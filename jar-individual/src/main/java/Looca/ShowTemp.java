@@ -8,7 +8,7 @@ public class ShowTemp {
 
     Temperatura temperatura = looca.getTemperatura();
 
-    public Temperatura showTemp(){
-        return temperatura;
+    public Double showTemp(){
+        return temperatura.getTemperatura();
     }
 }

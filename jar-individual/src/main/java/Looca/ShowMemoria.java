@@ -11,4 +11,16 @@ public class ShowMemoria {
     public Memoria showMemoria(){
         return memoria;
     }
+    
+    public Long usoRam(){
+        return memoria.getEmUso();
+    }
+    
+    public Long disponivelRam(){
+        return memoria.getDisponivel();
+    }
+    
+    public Long totalRam(){
+        return memoria.getTotal();
+    }
 }
