@@ -40,16 +40,16 @@ public class JarIndividual {
         select.selectAndInsert(email, senha);
         
         
-        listaObjetoUsuario = conexao.query("select * from Usuario where email = ? and senha = ?", 
-                new UsuarioRowMapper(), email, senha);
-
-        if (listaObjetoUsuario.stream().anyMatch(usuario ->
-                usuario.getEmailUsuario().equalsIgnoreCase(email)
-                        && usuario.getSenhaUsuario().equals(senha))) {
-            System.out.println("Login deu certo!");
-        } else {
-            System.out.println("Deu errado");
-        }
+//        listaObjetoUsuario = conexao.query("select * from Usuario where email = ? and senha = ?", 
+//                new UsuarioRowMapper(), email, senha);
+//
+//        if (listaObjetoUsuario.stream().anyMatch(usuario ->
+//                usuario.getEmailUsuario().equalsIgnoreCase(email)
+//                        && usuario.getSenhaUsuario().equals(senha))) {
+//            System.out.println("Login deu certo!");
+//        } else {
+//            System.out.println("Deu errado");
+//        }
     }
     
 }

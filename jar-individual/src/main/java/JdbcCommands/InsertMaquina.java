@@ -26,7 +26,7 @@ public class InsertMaquina {
     
     ShowSistema sis = new ShowSistema();
     
-    public void insertSql(Integer id, Integer user){
+    public void insertSql(String id, String user){
         String so = sis.showSistema().getSistemaOperacional();
         Integer arquitetura = sis.showSistema().getArquitetura();
         String fabricante = sis.showSistema().getFabricante();
@@ -36,13 +36,13 @@ public class InsertMaquina {
                 new UsuarioRowMapper(), id);
         
         if (validation.stream().anyMatch(usuario ->
-                usuario.getIdEmpresa().equalsIgnoreCase(String.valueOf(id)))) {
+                usuario.getIdEmpresa().equalsIgnoreCase(id))) {
             
             System.out.println("Maquina ja Existe");
             
             List<MaquinaClass> maq = con.query("select * from Maquina where id_empresa = ?", 
                 new MaquinaRowMapper(), id);
-            log.insertSql(Integer.parseInt(maq.get(0).getIdMaquina()), 
+            log.insertSql(maq.get(0).getIdMaquina(), 
                     user, id);
             
             
@@ -55,7 +55,7 @@ public class InsertMaquina {
 
             List<MaquinaClass> maq = con.query("select * from Maquina max(id)", 
                 new BeanPropertyRowMapper(MaquinaClass.class));
-            log.insertSql(Integer.parseInt(maq.get(0).getIdMaquina()), 
+            log.insertSql(maq.get(0).getIdMaquina(), 
                     user, id);
             
             

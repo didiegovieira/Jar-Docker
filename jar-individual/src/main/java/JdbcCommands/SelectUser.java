@@ -23,11 +23,11 @@ public class SelectUser {
     List<Usuario> listaObjetoUsuario;
     
     InsertMaquina inMaquina = new InsertMaquina();
-    InsertComponente inComp = new InsertComponente();
+    //InsertComponente inComp = new InsertComponente();
     InsertComponenteMaquina inCompMaq = new InsertComponenteMaquina();
     
-    String emailSave = null;
-    String senhaSave = null;
+    String emailSave = "";
+    String senhaSave = "";
     
     public void selectAndInsert(String email, String senha){
         
@@ -42,27 +42,27 @@ public class SelectUser {
                 usuario.getEmailUsuario().equalsIgnoreCase(email)
                         && usuario.getSenhaUsuario().equals(senha))) {
             System.out.println("Login deu certo!");
+            
+            //Insert na tabela de Maquina
+            Usuario id = listaObjetoUsuario.get(0);
+
+            this.emailSave = email;
+            this.senhaSave = senha;
+
+            inMaquina.insertSql(id.getIdEmpresa(), id.getPID());
+
+            //Insert na tabela de Componentes
+            //inComp.insertSql();
         } else {
             System.out.println("Deu errado");
         }
         
-        //Insert na tabela de Maquina
-        Usuario id = listaObjetoUsuario.get(0);
-        Integer idEmpresa = Integer.valueOf(id.getIdEmpresa());
-        Integer idUsuario = Integer.valueOf(id.getPID());
         
-        this.emailSave = email;
-        this.senhaSave = senha;
-        
-        inMaquina.insertSql(idEmpresa, idUsuario);
-        
-        //Insert na tabela de Componentes
-        inComp.insertSql();
         
         
     }
         //Insert na tabela ComponenteMaquina
-        public void componenteMaquina(Integer componente){
+        public void componenteMaquina(String componente){
             inCompMaq.insertSql(componente);
         }
 }

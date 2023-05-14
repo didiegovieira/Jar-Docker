@@ -15,10 +15,10 @@ public class InsertLogdeUso {
         ConexaoBanco conexao = new ConexaoBanco();
         JdbcTemplate con = conexao.getConnection();
         
-        public void insertSql(Integer idMaquina, Integer idUsuario, Integer idEmpresa){
+        public void insertSql(String idMaquina, String idUsuario, String idEmpresa){
             
-            con.update(String.format("insert into LogUso values (%d, %d, %d, null, null, null)", 
-                idMaquina, idEmpresa, idUsuario));
+            con.update("insert into LogUso values (?, ?, ?, null, null, null)", 
+                idMaquina, idEmpresa, idUsuario);
             
         }
         

@@ -23,19 +23,17 @@ public class InsertComponenteMaquina {
     List<MaquinaClass> maq;
     InsertRegistro reg = new InsertRegistro();
 
-    public void insertSql(Integer idComponente){
+    public void insertSql(String idComponente){
         List<MaquinaClass> maq = con.query("select * from Maquina max(id)", 
                 new BeanPropertyRowMapper(MaquinaClass.class));
         
-        Integer idMaquina = Integer.parseInt(maq.get(0).getIdMaquina());
-        Integer idEmpresa = Integer.parseInt(maq.get(0).getIdEmpresa());
         
         con.update("insert into ComponenteMaquina values (?, ?, ?)", 
-            idComponente, idMaquina, idEmpresa);
+            idComponente, maq.get(0).getIdMaquina(), maq.get(0).getIdMaquina());
         
-        reg.insertSqlCpu(idComponente, idMaquina, idEmpresa);
-        reg.insertSqlDisco(idComponente, idMaquina, idEmpresa);
-        reg.insertSqlRede(idComponente, idMaquina, idEmpresa);
-        reg.insertSqlRam(idComponente, idMaquina, idEmpresa);
+        reg.insertSqlCpu(idComponente, maq.get(0).getIdMaquina(), maq.get(0).getIdMaquina());
+        reg.insertSqlDisco(idComponente, maq.get(0).getIdMaquina(), maq.get(0).getIdMaquina());
+        reg.insertSqlRede(idComponente, maq.get(0).getIdMaquina(), maq.get(0).getIdMaquina());
+        reg.insertSqlRam(idComponente, maq.get(0).getIdMaquina(), maq.get(0).getIdMaquina());
     }
 }

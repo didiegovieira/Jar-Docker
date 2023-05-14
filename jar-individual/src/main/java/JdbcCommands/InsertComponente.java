@@ -43,7 +43,7 @@ public class InsertComponente {
             //Insert ComponenteMaquina:
             List<ComponenteClass> maq = con.query("select * from Componente max(id)", 
                 new BeanPropertyRowMapper(ComponenteClass.class));
-            user.componenteMaquina(Integer.parseInt(maq.get(0).getId_componente()));
+            user.componenteMaquina(maq.get(0).getId_componente());
             
             
         } else {
@@ -55,7 +55,7 @@ public class InsertComponente {
             //Insert ComponenteMaquina:
             List<ComponenteClass> maq = con.query("select * from Componente max(id)", 
                 new BeanPropertyRowMapper(ComponenteClass.class));
-            user.componenteMaquina(Integer.parseInt(maq.get(0).getId_componente()));
+            user.componenteMaquina(maq.get(0).getId_componente());
             
             
         }
@@ -71,7 +71,7 @@ public class InsertComponente {
              //Insert ComponenteMaquina:
             List<ComponenteClass> maq = con.query("select * from Componente max(id)", 
                 new BeanPropertyRowMapper(ComponenteClass.class));
-            user.componenteMaquina(Integer.parseInt(maq.get(0).getId_componente()));
+            user.componenteMaquina(maq.get(0).getId_componente());
             
         } else {
             System.out.println("Registrando Disco");
@@ -82,7 +82,7 @@ public class InsertComponente {
              //Insert ComponenteMaquina:
             List<ComponenteClass> maq = con.query("select * from Componente max(id)", 
                 new BeanPropertyRowMapper(ComponenteClass.class));
-            user.componenteMaquina(Integer.parseInt(maq.get(0).getId_componente()));
+            user.componenteMaquina(maq.get(0).getId_componente());
             
         }
         
@@ -97,7 +97,7 @@ public class InsertComponente {
              //Insert ComponenteMaquina:
             List<ComponenteClass> maq = con.query("select * from Componente max(id)", 
                 new BeanPropertyRowMapper(ComponenteClass.class));
-            user.componenteMaquina(Integer.parseInt(maq.get(0).getId_componente()));
+            user.componenteMaquina(maq.get(0).getId_componente());
             
         } else {
             System.out.println("Registrando Rede");
@@ -108,7 +108,7 @@ public class InsertComponente {
              //Insert ComponenteMaquina:
             List<ComponenteClass> maq = con.query("select * from Componente max(id)", 
                 new BeanPropertyRowMapper(ComponenteClass.class));
-            user.componenteMaquina(Integer.parseInt(maq.get(0).getId_componente()));
+            user.componenteMaquina(maq.get(0).getId_componente());
             
         }
         
