@@ -8,7 +8,6 @@ Jdbc/ComponenteMaquinaRowMapper.class
 JdbcCommands/SelectUser.class
 JdbcCommands/InsertLogdeUso.class
 Jdbc/UsuarioRowMapper.class
-.netbeans_automatic_build
 JdbcCommands/InsertMaquina.class
 Jdbc/RegistroRowMapper.class
 Individual/JarIndividual.class
