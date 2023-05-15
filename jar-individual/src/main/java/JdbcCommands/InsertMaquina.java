@@ -5,6 +5,7 @@
 package JdbcCommands;
 
 import Jdbc.ConexaoBanco;
+import Jdbc.ConexaoBancoLocal;
 import Jdbc.MaquinaClass;
 import Jdbc.MaquinaRowMapper;
 import Jdbc.Usuario;
@@ -21,6 +22,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class InsertMaquina {
     ConexaoBanco conexao = new ConexaoBanco();
     JdbcTemplate con = conexao.getConnection();
+    
+    ConexaoBancoLocal conexaoBancoLocal = new ConexaoBancoLocal();
+    JdbcTemplate conexaoLocal = conexaoBancoLocal.getConnection();
     
     InsertLogdeUso log = new InsertLogdeUso();
     
@@ -88,7 +92,7 @@ public class InsertMaquina {
 //        } else {
             System.out.println("Registrando Maquina");
             
-            con.update("insert into Maquina values (?, null, ?, ?, ?)", 
+            conexaoLocal.update("insert into Maquina values (?, null, ?, ?, ?)", 
                 so, arquitetura, fabricante, id);
 
 //            List<MaquinaClass> maq = con.query("select * from Maquina max(id)", 
