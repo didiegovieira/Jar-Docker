@@ -92,8 +92,9 @@ public class InsertMaquina {
 //        } else {
             System.out.println("Registrando Maquina");
             
-            conexaoLocal.update("insert into Maquina (sistema_operacional, modelo, fabricante, id_empresa) values (?, ?, ?, ?)", 
-                so, arquitetura, fabricante, id);
+            conexaoLocal.update(String.format(
+                    "INSERT INTO Maquina (sistema_operacional, modelo, fabricante, id_empresa) VALUES ('%s', %d, %s, %d)", 
+                    so, arquitetura, fabricante, id));
 
 //            List<MaquinaClass> maq = con.query("select * from Maquina max(id)", 
 //                new BeanPropertyRowMapper(MaquinaClass.class));
