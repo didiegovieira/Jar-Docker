@@ -92,7 +92,7 @@ public class InsertMaquina {
 //        } else {
             System.out.println("Registrando Maquina");
             
-            conexaoLocal.update("insert into Maquina values (?, null, ?, ?, ?)", 
+            conexaoLocal.update("insert into (sistema_operacional, modelo, fabricante, id_empresa) Maquina values (?, null, ?, ?, ?)", 
                 so, arquitetura, fabricante, id);
 
 //            List<MaquinaClass> maq = con.query("select * from Maquina max(id)", 
