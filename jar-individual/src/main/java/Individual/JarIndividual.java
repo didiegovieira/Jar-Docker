@@ -29,11 +29,11 @@ public class JarIndividual {
         SelectUser select = new SelectUser();
         
         System.out.println("1 SQL / 2 MySql");
-        Integer escolha = null;
+        Integer escolha = leitor.nextInt();
         String email = "";
         String senha = "";
         
-        switch (0) {
+        switch (escolha) {
             case 1:
                 System.out.println("-".repeat(30));
                 System.out.println("Teste Sql pela Azure");
