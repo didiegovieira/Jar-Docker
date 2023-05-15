@@ -55,7 +55,7 @@ public class JarIndividual {
                 System.out.println("Teste Sql Local");
 
                 System.out.println("email");
-                String emailLocal = leitor.nextLine();
+                String emailLocal = leitor2.nextLine();
 
                 System.out.println("senha");
                 String senhaLocal = leitor2.nextLine();
