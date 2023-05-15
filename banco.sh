@@ -18,7 +18,6 @@ CREATE TABLE Maquina (
   id INT PRIMARY KEY AUTO_INCREMENT,
   sistema_operacional VARCHAR(50) NOT NULL,
   modelo VARCHAR(45),
-  ip VARCHAR(15),
   fabricante VARCHAR(45),
   id_empresa INT,
   FOREIGN KEY (id_empresa) REFERENCES Empresa(id)
