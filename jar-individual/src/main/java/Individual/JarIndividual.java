@@ -46,6 +46,7 @@ public class JarIndividual {
 
                 select.selectAndInsert(email, senha);
                 break;
+                
             case 2:
                 System.out.println("-".repeat(30));
                 System.out.println("Teste Sql Local");
@@ -56,10 +57,13 @@ public class JarIndividual {
                 System.out.println("senha");
                 senha = leitor.nextLine();
 
-                select.selectAndInsert(email, senha);
+                select.selectAndInsertLocal(email, senha);
                 break;
+                
             default:
-                throw new AssertionError();
+                System.out.println("Opção inválida. Selecione 1 ou 2.");
+                break;
+                
         }
         
         
