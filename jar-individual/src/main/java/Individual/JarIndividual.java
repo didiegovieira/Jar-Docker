@@ -28,16 +28,39 @@ public class JarIndividual {
         
         SelectUser select = new SelectUser();
         
-        System.out.println("-".repeat(30));
-        System.out.println("teste sql na azure");
+        System.out.println("1 SQL / 2 MySql");
+        Integer escolha = null;
+        String email = "";
+        String senha = "";
         
-        System.out.println("login");
-        String email = leitor.nextLine();
-        
-        System.out.println("senha");
-        String senha = leitor.nextLine();
-        
-        select.selectAndInsert(email, senha);
+        switch (0) {
+            case 1:
+                System.out.println("-".repeat(30));
+                System.out.println("Teste Sql pela Azure");
+
+                System.out.println("email");
+                email = leitor.nextLine();
+
+                System.out.println("senha");
+                senha = leitor.nextLine();
+
+                select.selectAndInsert(email, senha);
+                break;
+            case 2:
+                System.out.println("-".repeat(30));
+                System.out.println("Teste Sql Local");
+
+                System.out.println("email");
+                email = leitor.nextLine();
+
+                System.out.println("senha");
+                senha = leitor.nextLine();
+
+                select.selectAndInsert(email, senha);
+                break;
+            default:
+                throw new AssertionError();
+        }
         
         
 //        listaObjetoUsuario = conexao.query("select * from Usuario where email = ? and senha = ?", 
