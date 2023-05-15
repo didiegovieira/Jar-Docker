@@ -70,7 +70,7 @@ public class InsertMaquina {
     
     public void insertMysql(String id, String user){
         String so = sis.showSistema().getSistemaOperacional();
-        Integer arquitetura = sis.showSistema().getArquitetura();
+        String arquitetura = Integer.toString(sis.showSistema().getArquitetura());
         String fabricante = sis.showSistema().getFabricante();
         
 //        List<Usuario> validation;
@@ -93,7 +93,7 @@ public class InsertMaquina {
             System.out.println("Registrando Maquina");
             
             conexaoLocal.update(String.format(
-                    "INSERT INTO Maquina (sistema_operacional, modelo, fabricante, id_empresa) VALUES ('%s', %d, %s, %d)", 
+                    "INSERT INTO Maquina (sistema_operacional, modelo, fabricante, id_empresa) VALUES ('%s', '%s', %s, %d)", 
                     so, arquitetura, fabricante, id));
 
 //            List<MaquinaClass> maq = con.query("select * from Maquina max(id)", 
