@@ -27,8 +27,6 @@ public class InsertComponente {
     ShowRede rede = new ShowRede();
     
     SelectUser user = new SelectUser();
-    InsertComponenteMaquina inCompMaq = new InsertComponenteMaquina();
-    InsertRegistro inReg = new InsertRegistro();
     
     public void insertSql(){
         //Validação da CPU
@@ -36,17 +34,7 @@ public class InsertComponente {
         validation = con.query("select nomeComponente from Componente where nomeComponente = ?", 
                 new ComponenteRowMapper(), cpu.nomeCpu());
         
-        if (validation.stream().anyMatch(c ->
-                c.getNomeComponente().equalsIgnoreCase(cpu.nomeCpu()))) {
-            System.out.println("Componente CPU ja Existe");
-            
-            //Insert ComponenteMaquina:
-            List<ComponenteClass> maq = con.query("select * from Componente max(id)", 
-                new BeanPropertyRowMapper(ComponenteClass.class));
-            user.componenteMaquina(maq.get(0).getId_componente());
-            
-            
-        } else {
+        
             System.out.println("Registrando Cpu");
             con.update(
                     "insert into Componente values (?, ?, 'Cpu', ?, null, ?, null)", 
@@ -57,60 +45,37 @@ public class InsertComponente {
                 new BeanPropertyRowMapper(ComponenteClass.class));
             user.componenteMaquina(maq.get(0).getId_componente());
             
-            
-        }
         
         //Validation do DISCO
         validation = con.query("select nomeComponente from Componente where nomeComponente = ?", 
                 new ComponenteRowMapper(), disco.nomeDisco());
         
-        if (validation.stream().anyMatch(c ->
-                c.getNomeComponente().equalsIgnoreCase(disco.nomeDisco()))) {
-            System.out.println("Componente Disco ja Existe");
-            
-             //Insert ComponenteMaquina:
-            List<ComponenteClass> maq = con.query("select * from Componente max(id)", 
-                new BeanPropertyRowMapper(ComponenteClass.class));
-            user.componenteMaquina(maq.get(0).getId_componente());
-            
-        } else {
             System.out.println("Registrando Disco");
             con.update(
                     "insert into Componente values (?, null, 'Disco', null, null, null, null)", 
                 disco.nomeDisco());
            
              //Insert ComponenteMaquina:
-            List<ComponenteClass> maq = con.query("select * from Componente max(id)", 
+                maq = con.query("select * from Componente max(id)", 
                 new BeanPropertyRowMapper(ComponenteClass.class));
             user.componenteMaquina(maq.get(0).getId_componente());
             
-        }
         
         //Validation da Rede
         validation = con.query("select nomeComponente from Componente where nomeComponente = ?", 
                 new ComponenteRowMapper(), rede.nomeRede());
         
-        if (validation.stream().anyMatch(c ->
-                c.getNomeComponente().equalsIgnoreCase(rede.nomeRede()))) {
-            System.out.println("Componente Rede ja Existe");
-            
-             //Insert ComponenteMaquina:
-            List<ComponenteClass> maq = con.query("select * from Componente max(id)", 
-                new BeanPropertyRowMapper(ComponenteClass.class));
-            user.componenteMaquina(maq.get(0).getId_componente());
-            
-        } else {
             System.out.println("Registrando Rede");
             con.update(
                     "insert into Componente values (?, null, 'Rede', null, ?, null, ?)", 
                 rede.nomeRede(),rede.ipRede(), rede.driverRede());
-            
+
              //Insert ComponenteMaquina:
-            List<ComponenteClass> maq = con.query("select * from Componente max(id)", 
+                maq = con.query("select * from Componente max(id)", 
                 new BeanPropertyRowMapper(ComponenteClass.class));
             user.componenteMaquina(maq.get(0).getId_componente());
             
-        }
+        
         
     }
     

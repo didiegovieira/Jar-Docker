@@ -45,11 +45,11 @@ public class SelectUser {
             
             //Insert na tabela de Maquina
             Usuario id = listaObjetoUsuario.get(0);
-
+            System.out.println(id);
             this.emailSave = email;
             this.senhaSave = senha;
 
-            inMaquina.insertSql(id.getIdEmpresa(), id.getPID());
+            inMaquina.insertSql(id.getIdEmpresa(), id.getId());
 
             //Insert na tabela de Componentes
             //inComp.insertSql();

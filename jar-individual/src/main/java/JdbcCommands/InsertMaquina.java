@@ -31,36 +31,36 @@ public class InsertMaquina {
         Integer arquitetura = sis.showSistema().getArquitetura();
         String fabricante = sis.showSistema().getFabricante();
         
-        List<Usuario> validation;
-        validation = con.query("select id_empresa from Maquina where id_empresa = ?", 
-                new UsuarioRowMapper(), id);
+//        List<Usuario> validation;
+//        validation = con.query("select id_empresa from Maquina where id_empresa = ?", 
+//                new UsuarioRowMapper(), id);
         
-        if (validation.stream().anyMatch(usuario ->
-                usuario.getIdEmpresa().equalsIgnoreCase(id))) {
-            
-            System.out.println("Maquina ja Existe");
-            
-            List<MaquinaClass> maq = con.query("select * from Maquina where id_empresa = ?", 
-                new MaquinaRowMapper(), id);
-            log.insertSql(maq.get(0).getIdMaquina(), 
-                    user, id);
-            
-            
-            
-        } else {
+//        if (validation.stream().anyMatch(usuario ->
+//                usuario.getIdEmpresa().equalsIgnoreCase(id))) {
+//            
+//            System.out.println("Maquina ja Existe");
+//            
+//            List<MaquinaClass> maq = con.query("select * from Maquina where id_empresa = ?", 
+//                new MaquinaRowMapper(), id);
+//            log.insertSql(maq.get(0).getIdMaquina(), 
+//                    user, id);
+//            
+//            
+//            
+//        } else {
             System.out.println("Registrando Maquina");
             
-            con.update("insert into Maquina values (?, ?, ?, ?)", 
+            con.update("insert into Maquina values (?, null, ?, ?, ?)", 
                 so, arquitetura, fabricante, id);
 
-            List<MaquinaClass> maq = con.query("select * from Maquina max(id)", 
-                new BeanPropertyRowMapper(MaquinaClass.class));
-            log.insertSql(maq.get(0).getIdMaquina(), 
-                    user, id);
+//            List<MaquinaClass> maq = con.query("select * from Maquina max(id)", 
+//                new BeanPropertyRowMapper(MaquinaClass.class));
+//            log.insertSql(maq.get(0).getIdMaquina(), 
+//                    user, id);
             
             
             
-        }
+        //}
         
     }
     

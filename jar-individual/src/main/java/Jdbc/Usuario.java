@@ -9,16 +9,16 @@ package Jdbc;
  * @author diegovieira
  */
 public class Usuario {
-    private String PID;
+    private String id;
     private String email;
     private String senha;
     private String idEmpresa;
     
-    public Usuario(String email, String senha, String idEmpresa, String PID){
+    public Usuario(String email, String senha, String idEmpresa, String id){
+        this.id = id;
         this.email = email;
         this.senha = senha;
         this.idEmpresa = idEmpresa;
-        this.PID = PID;
     }
     
     public Usuario(){
@@ -28,7 +28,7 @@ public class Usuario {
     @Override
     public String toString() {
         return "ObjetoUsuario{" +
-                "PID='" + PID + '\'' +
+                "id='" + id + '\'' +
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
                 ", id_empresa='" + idEmpresa + '\'' +
@@ -39,12 +39,12 @@ public class Usuario {
         return email;
     }
 
-    public String getPID() {
-        return PID;
+    public String getId() {
+        return id;
     }
 
-    public void setPID(String PID) {
-        this.PID = PID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getSenhaUsuario() {
