@@ -17,6 +17,10 @@ public class InsertLogdeUso {
         
         public void insertSql(String idMaquina, String idUsuario, String idEmpresa){
             
+            if () {
+                
+            }
+            
             con.update("insert into LogUso values (?, ?, ?, null, null, null)", 
                 idMaquina, idEmpresa, idUsuario);
             

@@ -6,13 +6,10 @@ package JdbcCommands;
 
 import Jdbc.ConexaoBanco;
 import Jdbc.ConexaoBancoLocal;
-import Jdbc.MaquinaClass;
-import Jdbc.MaquinaRowMapper;
 import Jdbc.Usuario;
 import Jdbc.UsuarioRowMapper;
 import Looca.ShowSistema;
 import java.util.List;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -35,10 +32,18 @@ public class InsertMaquina {
         Integer arquitetura = sis.showSistema().getArquitetura();
         String fabricante = sis.showSistema().getFabricante();
         
-//        List<Usuario> validation;
-//        validation = con.query("select id_empresa from Maquina where id_empresa = ?", 
-//                new UsuarioRowMapper(), id);
+        List<Usuario> validation;
+        validation = con.query("select id_empresa from Maquina where id_empresa = ?", 
+                new UsuarioRowMapper(), id);
         
+        if (validation.size() < 0){
+            System.out.println("Registrando Maquina");
+            
+            con.update("insert into Maquina values (?, null, ?, ?, ?)", 
+                so, arquitetura, fabricante, id);
+        } else {
+            
+        }
 //        if (validation.stream().anyMatch(usuario ->
 //                usuario.getIdEmpresa().equalsIgnoreCase(id))) {
 //            
@@ -52,10 +57,7 @@ public class InsertMaquina {
 //            
 //            
 //        } else {
-            System.out.println("Registrando Maquina");
             
-            con.update("insert into Maquina values (?, null, ?, ?, ?)", 
-                so, arquitetura, fabricante, id);
 
 //            List<MaquinaClass> maq = con.query("select * from Maquina max(id)", 
 //                new BeanPropertyRowMapper(MaquinaClass.class));

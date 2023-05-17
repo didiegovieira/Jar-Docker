@@ -31,7 +31,6 @@ public class JarIndividual {
         
         Integer escolha;
         
-        
         do {
             System.out.println("1 SQL / 2 MySql");
             escolha = leitor.nextInt();

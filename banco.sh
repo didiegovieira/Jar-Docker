@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Cria o banco de dados e as tabelas
-docker exec -i ContainerBD mysql -uroot -psuasenha << EOF
+docker exec -i ContainerBD mysql -uroot -purubu100 << EOF
 CREATE DATABASE IF NOT EXISTS banco1;
 USE banco1;
 
