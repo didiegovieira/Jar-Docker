@@ -4,85 +4,67 @@
  */
 package JdbcCommands;
 
-import Jdbc.ComponenteClass;
+import Jdbc.Componente;
+import Jdbc.ComponenteMaquinaRowMapper;
 import Jdbc.ComponenteRowMapper;
 import Jdbc.ConexaoBanco;
+import Jdbc.Maquina;
+import Jdbc.MaquinaRowMapper;
 import Looca.ShowCPU;
 import Looca.ShowDisco;
 import Looca.ShowRede;
 import java.util.List;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
- * @author diegovieira
+ * @author diego
  */
 public class InsertComponente {
-    ConexaoBanco conexao = new ConexaoBanco();
-    JdbcTemplate con = conexao.getConnection();
+    private ConexaoBanco conexao = new ConexaoBanco();
+    private JdbcTemplate con = conexao.getConnection();
     
-    ShowDisco disco = new ShowDisco();
-    ShowCPU cpu = new ShowCPU();
-    ShowRede rede = new ShowRede();
+    InsertComponenteMaquina inCompMaq = new InsertComponenteMaquina();
     
-    SelectUser user = new SelectUser();
-    
-    public void insertSql(){
-        //Validação da CPU
-        List<ComponenteClass> validation;
-        validation = con.query("select nomeComponente from Componente where nomeComponente = ?", 
-                new ComponenteRowMapper(), cpu.nomeCpu());
-        
-        
-            System.out.println("Registrando Cpu");
-            con.update(
-                    "insert into Componente values (?, ?, 'Cpu', ?, null, ?, null)", 
-                cpu.nomeCpu(), cpu.fabricanteCpu(), cpu.frequenciaCpu(), cpu.modeloCpu());
-            
-            //Insert ComponenteMaquina:
-            List<ComponenteClass> maq = con.query("select * from Componente max(id)", 
-                new BeanPropertyRowMapper(ComponenteClass.class));
-            user.componenteMaquina(maq.get(0).getId_componente());
-            
-        
-        //Validation do DISCO
-        validation = con.query("select nomeComponente from Componente where nomeComponente = ?", 
-                new ComponenteRowMapper(), disco.nomeDisco());
-        
-            System.out.println("Registrando Disco");
-            con.update(
-                    "insert into Componente values (?, null, 'Disco', null, null, null, null)", 
-                disco.nomeDisco());
-           
-             //Insert ComponenteMaquina:
-                maq = con.query("select * from Componente max(id)", 
-                new BeanPropertyRowMapper(ComponenteClass.class));
-            user.componenteMaquina(maq.get(0).getId_componente());
-            
-        
-        //Validation da Rede
-        validation = con.query("select nomeComponente from Componente where nomeComponente = ?", 
-                new ComponenteRowMapper(), rede.nomeRede());
-        
-            System.out.println("Registrando Rede");
-            con.update(
-                    "insert into Componente values (?, null, 'Rede', null, ?, null, ?)", 
-                rede.nomeRede(),rede.ipRede(), rede.driverRede());
+    public void inserirComponenteMaquina(String idEmpresa, String idMaquina) {
+        ShowCPU cpu = new ShowCPU();
+        ShowDisco disco = new ShowDisco();
+        ShowRede rede = new ShowRede();
 
-             //Insert ComponenteMaquina:
-                maq = con.query("select * from Componente max(id)", 
-                new BeanPropertyRowMapper(ComponenteClass.class));
-            user.componenteMaquina(maq.get(0).getId_componente());
-            
+        List<Componente> maqCpu = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), cpu.nomeCpu());
+        // Inserir componente CPU
+        if (maqCpu.isEmpty()){
+            System.out.println("Registrando CPU");
+            con.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, ?, 'CPU', null, null, null)",
+                    cpu.nomeCpu(), cpu.fabricanteCpu());
+            List<Componente> verify = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), cpu.nomeCpu());
+            inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina);
+        } else {
+            inCompMaq.cadastroComponenteExistente(maqCpu.get(0).getId_componente(), idMaquina);
+        }
         
-        
-    }
-    
-    public void insertMysql(){
-        
-        
-       
-        
+        //List<Componente> maqDisco = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), disco.nomeDisco());
+        //Inserir componente Disco
+        //if (maqDisco.isEmpty()){
+        //    System.out.println("Registrando Disco");
+        //    con.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, null, 'Disco', null, null, null)",
+        //        disco.nomeDisco());
+        //    List<Componente> verify = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), disco.nomeDisco());
+        //    inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina);
+        //}  else {
+        //    inCompMaq.cadastroComponenteExistente(maqDisco.get(0).getId_componente(), idMaquina);
+        //}
+
+        List<Componente> maqRede = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), rede.nomeRede());
+        //Inserir componente Disco
+        if (maqRede.isEmpty()){
+            System.out.println("Registrando Rede");
+            con.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, null, 'Rede', ?, null, ?)",
+                rede.nomeRede(), rede.ipRede(), rede.driverRede());
+            List<Componente> verify = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), rede.nomeRede());
+            inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina);
+        }  else {
+            inCompMaq.cadastroComponenteExistente(maqRede.get(0).getId_componente(), idMaquina);
+        }
     }
 }

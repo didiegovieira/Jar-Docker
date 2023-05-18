@@ -9,16 +9,16 @@ package Jdbc;
  * @author diegovieira
  */
 public class Usuario {
-    private String id;
+    private String id_usuario;
     private String email;
     private String senha;
-    private String idEmpresa;
+    private String fk_empresa;
     
-    public Usuario(String email, String senha, String idEmpresa, String id){
-        this.id = id;
+    public Usuario(String email, String senha, String fk_empresa, String id_usuario){
+        this.id_usuario = id_usuario;
         this.email = email;
         this.senha = senha;
-        this.idEmpresa = idEmpresa;
+        this.fk_empresa = fk_empresa;
     }
     
     public Usuario(){
@@ -28,10 +28,10 @@ public class Usuario {
     @Override
     public String toString() {
         return "ObjetoUsuario{" +
-                "id='" + id + '\'' +
+                "id_usuario ='" + id_usuario + '\'' +
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
-                ", id_empresa='" + idEmpresa + '\'' +
+                ", fk_empresa ='" + fk_empresa + '\'' +
                 '}';
     }
 
@@ -39,20 +39,20 @@ public class Usuario {
         return email;
     }
 
-    public String getId() {
-        return id;
+    public String getId_usuario() {
+        return id_usuario;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId_usuario(String id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public String getSenhaUsuario() {
         return senha;
     }
 
-    public String getIdEmpresa() {
-        return idEmpresa;
+    public String getFk_empresa() {
+        return fk_empresa;
     }
 
     public void setEmail(String email) {
@@ -63,7 +63,7 @@ public class Usuario {
         this.senha = senha;
     }
     
-    public void setIdEmpresa(String idEmpresa) {
-        this.idEmpresa = idEmpresa;
+    public void setFk_empresa(String fk_empresa) {
+        this.fk_empresa = fk_empresa;
     }
 }

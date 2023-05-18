@@ -25,11 +25,17 @@ public class JarIndividual {
         ConexaoBanco conexaoBanco = new ConexaoBanco();
         JdbcTemplate conexao = conexaoBanco.getConnection();
         JdbcTemplate conexaoLocal = conexaoBancoLocal.getConnection();
-        List<Usuario> listaObjetoUsuario; 
         
         SelectUser select = new SelectUser();
         
         Integer escolha;
+        
+        ShowCPU cpu = new ShowCPU();
+        ShowTemp temp = new ShowTemp();
+        
+        //System.out.println(cpu.clockCpu());
+        //System.out.println(temp.showTemp());
+        //System.out.println(cpu.usoCpu());
         
         do {
             System.out.println("1 SQL / 2 MySql");
@@ -59,7 +65,7 @@ public class JarIndividual {
                 System.out.println("senha");
                 String senhaLocal = leitor2.nextLine();
 
-                select.selectAndInsertLocal(emailLocal, senhaLocal);
+                //select.selectAndInsertLocal(emailLocal, senhaLocal);
                 break;
                 
             default:
@@ -69,18 +75,6 @@ public class JarIndividual {
             }   
         } while (escolha != 0);
         
-        
-        
-//        listaObjetoUsuario = conexao.query("select * from Usuario where email = ? and senha = ?", 
-//                new UsuarioRowMapper(), email, senha);
-//
-//        if (listaObjetoUsuario.stream().anyMatch(usuario ->
-//                usuario.getEmailUsuario().equalsIgnoreCase(email)
-//                        && usuario.getSenhaUsuario().equals(senha))) {
-//            System.out.println("Login deu certo!");
-//        } else {
-//            System.out.println("Deu errado");
-//        }
     }
     
 }

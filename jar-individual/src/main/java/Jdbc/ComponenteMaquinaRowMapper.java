@@ -10,16 +10,16 @@ import org.springframework.jdbc.core.RowMapper;
 
 /**
  *
- * @author diegovieira
+ * @author diego
  */
-public class ComponenteMaquinaRowMapper implements RowMapper<ComponenteMaquinaClass>{
-    public ComponenteMaquinaClass mapRow(ResultSet rs, int rowNum) throws SQLException {
-        ComponenteMaquinaClass componente = new ComponenteMaquinaClass();
+public class ComponenteMaquinaRowMapper implements RowMapper<ComponenteMaquina>{
+    public ComponenteMaquina mapRow(ResultSet rs, int rowNum) throws SQLException {
+        ComponenteMaquina objetoComponenteMaquina = new ComponenteMaquina();
         
-        componente.setIdComponente(rs.getString("id_componente"));
-        componente.setIdMaquina(rs.getString("id_maquina"));
-        componente.setIdEmpresa(rs.getString("id_empresa"));
-        
-        return componente;
+        objetoComponenteMaquina.setId_componenteMaquina(rs.getString("id_componenteMaquina"));
+        objetoComponenteMaquina.setFk_componente(rs.getString("fk_componente"));
+        objetoComponenteMaquina.setFk_maquina(rs.getString("fk_maquina"));
+
+        return objetoComponenteMaquina;
     }
 }

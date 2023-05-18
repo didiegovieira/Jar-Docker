@@ -10,6 +10,8 @@ import Looca.ShowDisco;
 import Looca.ShowMemoria;
 import Looca.ShowRede;
 import Looca.ShowTemp;
+import java.util.Timer;
+import java.util.TimerTask;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -25,7 +27,6 @@ public class InsertRegistro {
     ShowDisco disco = new ShowDisco();
     ShowRede rede = new ShowRede();
     ShowMemoria ram = new ShowMemoria();
-    
     
     public void insertSqlCpu(String idComponente, String idMaquina, String idEmpresa){
         con.update("insert into Registro values (?, ?, ?, null, null, null, null, null, null, null, null, ?, ?, ?)", 

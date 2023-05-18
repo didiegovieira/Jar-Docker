@@ -23,14 +23,12 @@ public class SelectUser {
     List<Usuario> listaObjetoUsuario;
     
     InsertMaquina inMaquina = new InsertMaquina();
-    //InsertComponente inComp = new InsertComponente();
-    InsertComponenteMaquina inCompMaq = new InsertComponenteMaquina();
+    InsertLogdeUso inLogUso = new InsertLogdeUso();
     
     String emailSave = "";
     String senhaSave = "";
     
     public void selectAndInsert(String email, String senha){
-        
         
         //Select no Usuario
         listaObjetoUsuario = conexao.query(
@@ -46,51 +44,15 @@ public class SelectUser {
             //Insert na tabela de Maquina
             Usuario id = listaObjetoUsuario.get(0);
             System.out.println(id);
-            this.emailSave = email;
-            this.senhaSave = senha;
+            String idUser = id.getId_usuario();
+            String idEmpresa = id.getFk_empresa();
+            inLogUso.validacao(idUser, idEmpresa);
 
-            inMaquina.insertSql(id.getIdEmpresa(), id.getId());
-
-            //Insert na tabela de Componentes
-            //inComp.insertSql();
         } else {
-            System.out.println("Deu errado");
+            //Mensagem se login deu errado
+            System.out.println("Login deu errado");
         }
         
     }
     
-    //Insert na tabela ComponenteMaquina
-    public void componenteMaquina(String componente){
-        inCompMaq.insertSql(componente);
-    }
-    
-    public void selectAndInsertLocal(String email, String senha){
-        
-        
-        //Select no Usuario
-        listaObjetoUsuario = conexaoLocal.query(
-                "select * from Usuario where email = ? and senha = ?", 
-                new UsuarioRowMapper(), email, senha);
-        
-        //Mensagem se login deu certo
-        if (listaObjetoUsuario.stream().anyMatch(usuario ->
-                usuario.getEmailUsuario().equalsIgnoreCase(email)
-                        && usuario.getSenhaUsuario().equals(senha))) {
-            System.out.println("Login deu certo!");
-            
-            //Insert na tabela de Maquina
-            Usuario id = listaObjetoUsuario.get(0);
-            System.out.println(id);
-            this.emailSave = email;
-            this.senhaSave = senha;
-
-            inMaquina.insertMysql(id.getIdEmpresa(), id.getId());
-
-            //Insert na tabela de Componentes
-            //inComp.insertSql();
-        } else {
-            System.out.println("Deu errado");
-        }
-        
-    }
 }

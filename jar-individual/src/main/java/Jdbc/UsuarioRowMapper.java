@@ -12,15 +12,16 @@ import org.springframework.jdbc.core.RowMapper;
  *
  * @author diegovieira
  */
-public class UsuarioRowMapper implements RowMapper<Usuario>{
+public class UsuarioRowMapper implements RowMapper<Usuario> {
     public Usuario mapRow(ResultSet rs, int rowNum) throws SQLException {
         Usuario objetoUsuario = new Usuario();
-        
-        objetoUsuario.setId(rs.getString("id"));
+
+        objetoUsuario.setId_usuario(rs.getString("id_usuario"));
         objetoUsuario.setEmail(rs.getString("email"));
         objetoUsuario.setSenha(rs.getString("senha"));
-        objetoUsuario.setIdEmpresa(rs.getString("id_empresa"));
+        objetoUsuario.setFk_empresa(rs.getString("fk_empresa"));
 
         return objetoUsuario;
     }
 }
+

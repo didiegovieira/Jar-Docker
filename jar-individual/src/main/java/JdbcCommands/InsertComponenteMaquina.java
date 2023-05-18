@@ -4,36 +4,63 @@
  */
 package JdbcCommands;
 
+import Jdbc.Componente;
+import Jdbc.ComponenteMaquina;
+import Jdbc.ComponenteMaquinaRowMapper;
+import Jdbc.ComponenteRowMapper;
 import Jdbc.ConexaoBanco;
-import Jdbc.MaquinaClass;
-import Jdbc.Usuario;
 import Jdbc.UsuarioRowMapper;
 import java.util.List;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
- * @author diegovieira
+ * @author diego
  */
 public class InsertComponenteMaquina {
-    ConexaoBanco conexao = new ConexaoBanco();
-    JdbcTemplate con = conexao.getConnection();
+    private ConexaoBanco conexao = new ConexaoBanco();
+    private JdbcTemplate con = conexao.getConnection();
+    private InsertRegistro inReg = new InsertRegistro();
     
-    List<MaquinaClass> maq;
-    InsertRegistro reg = new InsertRegistro();
+    public void cadastroComponenteExistente(String idComponente, String idMaquina){
+        List<ComponenteMaquina> compo = con.query(
+                "select * from ComponenteMaquina where fk_componente = ? and fk_maquina = ?", 
+                new ComponenteMaquinaRowMapper(), idComponente, idMaquina);
+        
+        if(compo.isEmpty()){
+            con.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
+            
+            inReg.insertSqlCpu(idComponente, idMaquina, idMaquina);
+            inReg.insertSqlDisco(idComponente, idMaquina, idMaquina);
+            inReg.insertSqlRam(idComponente, idMaquina, idMaquina);
+            inReg.insertSqlRede(idComponente, idMaquina, idMaquina);
 
-    public void insertSql(String idComponente){
-        List<MaquinaClass> maq = con.query("select * from Maquina max(id)", 
-                new BeanPropertyRowMapper(MaquinaClass.class));
+        } else {
+            inReg.insertSqlCpu(idComponente, idMaquina, idMaquina);
+            inReg.insertSqlDisco(idComponente, idMaquina, idMaquina);
+            inReg.insertSqlRam(idComponente, idMaquina, idMaquina);
+            inReg.insertSqlRede(idComponente, idMaquina, idMaquina);
+        }
+    }
+    
+    public void cadastroComponenteNovo(String idComponente, String idMaquina){
+        List<ComponenteMaquina> compo = con.query(
+                "select * from ComponenteMaquina where fk_componente = ? and fk_maquina = ?", 
+                new ComponenteMaquinaRowMapper(), idComponente, idMaquina);
         
-        
-        con.update("insert into ComponenteMaquina values (?, ?, ?)", 
-            idComponente, maq.get(0).getIdMaquina(), maq.get(0).getIdMaquina());
-        
-        reg.insertSqlCpu(idComponente, maq.get(0).getIdMaquina(), maq.get(0).getIdMaquina());
-        reg.insertSqlDisco(idComponente, maq.get(0).getIdMaquina(), maq.get(0).getIdMaquina());
-        reg.insertSqlRede(idComponente, maq.get(0).getIdMaquina(), maq.get(0).getIdMaquina());
-        reg.insertSqlRam(idComponente, maq.get(0).getIdMaquina(), maq.get(0).getIdMaquina());
+        if(compo.isEmpty()){
+            con.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
+
+            inReg.insertSqlCpu(idComponente, idMaquina, idMaquina);
+            inReg.insertSqlDisco(idComponente, idMaquina, idMaquina);
+            inReg.insertSqlRam(idComponente, idMaquina, idMaquina);
+            inReg.insertSqlRede(idComponente, idMaquina, idMaquina);
+            
+        } else {
+            inReg.insertSqlCpu(idComponente, idMaquina, idMaquina);
+            inReg.insertSqlDisco(idComponente, idMaquina, idMaquina);
+            inReg.insertSqlRam(idComponente, idMaquina, idMaquina);
+            inReg.insertSqlRede(idComponente, idMaquina, idMaquina);
+        }
     }
 }
