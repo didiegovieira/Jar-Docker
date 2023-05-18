@@ -29,23 +29,23 @@ public class InsertRegistro {
     ShowMemoria ram = new ShowMemoria();
     
     public void insertSqlCpu(String idComponente, String idMaquina, String idEmpresa){
-        con.update("insert into Registro values (?, ?, ?, null, null, null, null, null, null, null, null, ?, ?, ?)", 
-                cpu.clockCpu(), temp.showTemp(), cpu.usoCpu(), idEmpresa, idComponente, idMaquina);
+        con.update("insert into Registro (clockCPU, temperaturaCPU, usoCPU, fk_componente) values (?, ?, ?, ?)", 
+                cpu.clockCpu(), temp.showTemp(), cpu.usoCpu(), idComponente);
     }
     
     public void insertSqlRede(String idComponente, String idMaquina, String idEmpresa){
-        con.update("insert into Registro values (null, null, null, ?, ?, null, null, null, null, null, null, ?, ?, ?)", 
-                rede.showDownload(), rede.showUpload(), idEmpresa, idComponente, idMaquina);
+        con.update("insert into Registro (downloadRede, uploadRede, fk_componente) values (?, ?, ?)", 
+                rede.showDownload(), rede.showUpload(), idComponente);
     }
 
     public void insertSqlRam(String idComponente, String idMaquina, String idEmpresa){
-        con.update("insert into Registro values (null, null, null, null, null, ?, ?, ?, null, null, null, ?, ?, ?)", 
-                ram.usoRam(), ram.disponivelRam(), ram.totalRam(), idEmpresa, idComponente, idMaquina);
+        con.update("insert into Registro (usoRAM, disponivelRam, totalRam, fk_componente) values (?, ?, ?, ?)", 
+                ram.usoRam(), ram.disponivelRam(), ram.totalRam(), idComponente);
     }
     
     public void insertSqlDisco(String idComponente, String idMaquina, String idEmpresa){
-        con.update("insert into Registro values (null, null, null, null, null, null, null, null, ?, ?, ?, ?, ?, ?)", 
-                disco.showUsado(), disco.showTotal(), disco.showDisponivel(), idEmpresa, idComponente, idMaquina);
+        con.update("insert into Registro (usadoDisco, totalDisco, disponivelDisco, fk_componente) values (?, ?, ?, ?)", 
+                disco.showUsado(), disco.showTotal(), disco.showDisponivel(), idComponente);
     }
     
 }
