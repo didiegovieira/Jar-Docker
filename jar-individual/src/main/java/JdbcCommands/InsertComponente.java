@@ -43,20 +43,20 @@ public class InsertComponente {
             inCompMaq.cadastroComponenteExistente(maqCpu.get(0).getId_componente(), idMaquina);
         }
         
-        //List<Componente> maqDisco = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), disco.nomeDisco());
+        List<Componente> maqDisco = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), disco.nomeDisco());
         //Inserir componente Disco
-        //if (maqDisco.isEmpty()){
-        //    System.out.println("Registrando Disco");
-        //    con.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, null, 'Disco', null, null, null)",
-        //        disco.nomeDisco());
-        //    List<Componente> verify = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), disco.nomeDisco());
-        //    inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina);
-        //}  else {
-        //    inCompMaq.cadastroComponenteExistente(maqDisco.get(0).getId_componente(), idMaquina);
-        //}
+        if (maqDisco.isEmpty()){
+            System.out.println("Registrando Disco");
+            con.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, null, 'Disco', null, null, null)",
+                disco.nomeDisco());
+            List<Componente> verify = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), disco.nomeDisco());
+            inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina);
+        }  else {
+            inCompMaq.cadastroComponenteExistente(maqDisco.get(0).getId_componente(), idMaquina);
+        }
 
         List<Componente> maqRede = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), rede.nomeRede());
-        //Inserir componente Disco
+        //Inserir componente Rede
         if (maqRede.isEmpty()){
             System.out.println("Registrando Rede");
             con.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, null, 'Rede', ?, null, ?)",
@@ -65,6 +65,17 @@ public class InsertComponente {
             inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina);
         }  else {
             inCompMaq.cadastroComponenteExistente(maqRede.get(0).getId_componente(), idMaquina);
+        }
+        
+        List<Componente> maqRam = con.query("select * from Componente where nomeComponente = 'Ram'", new ComponenteRowMapper());
+        //Inserir componente Ram
+        if (maqRede.isEmpty()){
+            System.out.println("Registrando Ram");
+            con.update("INSERT INTO Componente (tipo) VALUES ('Ram')");
+            List<Componente> verify = con.query("select * from Componente where nomeComponente = 'Ram'", new ComponenteRowMapper());
+            inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina);
+        }  else {
+            inCompMaq.cadastroComponenteExistente(maqRam.get(0).getId_componente(), idMaquina);
         }
     }
 }

@@ -30,16 +30,20 @@ public class InsertComponenteMaquina {
         if(compo.isEmpty()){
             con.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
             
-            inReg.insertSqlCpu(idComponente, idMaquina, idMaquina);
-            inReg.insertSqlDisco(idComponente, idMaquina, idMaquina);
-            inReg.insertSqlRam(idComponente, idMaquina, idMaquina);
-            inReg.insertSqlRede(idComponente, idMaquina, idMaquina);
+            compo = con.query(
+                "select * from ComponenteMaquina where fk_componente = ? and fk_maquina = ?", 
+                new ComponenteMaquinaRowMapper(), idComponente, idMaquina);
+            
+            inReg.insertSqlCpu(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            inReg.insertSqlDisco(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            inReg.insertSqlRam(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            inReg.insertSqlRede(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
 
         } else {
-            inReg.insertSqlCpu(idComponente, idMaquina, idMaquina);
-            inReg.insertSqlDisco(idComponente, idMaquina, idMaquina);
-            inReg.insertSqlRam(idComponente, idMaquina, idMaquina);
-            inReg.insertSqlRede(idComponente, idMaquina, idMaquina);
+            inReg.insertSqlCpu(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            inReg.insertSqlDisco(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            inReg.insertSqlRam(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            inReg.insertSqlRede(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
         }
     }
     
@@ -51,16 +55,20 @@ public class InsertComponenteMaquina {
         if(compo.isEmpty()){
             con.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
 
-            inReg.insertSqlCpu(idComponente, idMaquina, idMaquina);
-            inReg.insertSqlDisco(idComponente, idMaquina, idMaquina);
-            inReg.insertSqlRam(idComponente, idMaquina, idMaquina);
-            inReg.insertSqlRede(idComponente, idMaquina, idMaquina);
+            compo = con.query(
+                "select * from ComponenteMaquina where fk_componente = ? and fk_maquina = ?", 
+                new ComponenteMaquinaRowMapper(), idComponente, idMaquina);
             
+            inReg.insertSqlCpu(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            inReg.insertSqlDisco(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            inReg.insertSqlRam(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            inReg.insertSqlRede(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+
         } else {
-            inReg.insertSqlCpu(idComponente, idMaquina, idMaquina);
-            inReg.insertSqlDisco(idComponente, idMaquina, idMaquina);
-            inReg.insertSqlRam(idComponente, idMaquina, idMaquina);
-            inReg.insertSqlRede(idComponente, idMaquina, idMaquina);
+            inReg.insertSqlCpu(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            inReg.insertSqlDisco(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            inReg.insertSqlRam(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            inReg.insertSqlRede(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
         }
     }
 }
