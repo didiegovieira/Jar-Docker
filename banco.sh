@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker exec -it ContainerBD mysql -uroot -purubu100 << EOF
+sudo docker exec -i ContainerBD mysql -uroot -purubu100 << EOF
 CREATE DATABASE IF NOT EXISTS banco1;
 USE banco1;
 
@@ -119,3 +119,4 @@ INSERT INTO Empresa (nome, CNPJ, dono) VALUES ('Minha Empresa', '12345678901234'
 INSERT INTO Usuario (nome, sobrenome, email, senha, cargo, fk_empresa) VALUES ('Diego', 'Sobrenome', 'diego@gmail.com', 'diego1234', 'Cargo', 1);
 
 EOF
+
