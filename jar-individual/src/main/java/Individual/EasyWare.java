@@ -36,7 +36,6 @@ public class EasyWare extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         input_email = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -62,8 +61,6 @@ public class EasyWare extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Email:");
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Individual/icons8-usuário-30 (1).png"))); // NOI18N
 
         input_email.setBackground(new java.awt.Color(255, 255, 255));
         input_email.setForeground(new java.awt.Color(0, 0, 0));
@@ -108,9 +105,7 @@ public class EasyWare extends javax.swing.JFrame {
                         .addGap(101, 101, 101)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(74, 74, 74)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(input_password)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -132,17 +127,11 @@ public class EasyWare extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addComponent(jLabel2)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(input_email, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)))
+                .addGap(8, 8, 8)
+                .addComponent(input_email, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(input_password, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,7 +238,6 @@ public class EasyWare extends javax.swing.JFrame {
     private javax.swing.JTextField input_password;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
