@@ -40,8 +40,13 @@ public class InsertLogdeUso {
         } else {
             con.update("insert into LogUso values (?, ?, ?, null, null, null)",
                     listaLogUso.get(0).getFk_maquina(), idEmpresa, idUser);
+            
+            int fkMaquina = Integer.parseInt(listaLogUso.get(0).getFk_maquina());
+            int fkEmpresa = Integer.parseInt(idEmpresa);
+            int fkUsuario = Integer.parseInt(idUser);
             conexaoLocal.update("insert into LogUso(fk_maquina, fk_empresa, fk_usuario) values (?, ?, ?)",
-                    listaLogUso.get(0).getFk_maquina(), idEmpresa, idUser);
+                    fkMaquina, fkEmpresa, fkUsuario);
+
             InsertComponente comp = new InsertComponente();
             comp.inserirComponenteMaquina(idEmpresa, listaLogUso.get(0).getFk_maquina());
         }

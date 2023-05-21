@@ -34,7 +34,10 @@ public class InsertComponenteMaquina {
         
         if(compo.isEmpty()){
             con.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
-            conexaoLocal.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
+            
+            int fkComponente = Integer.parseInt(idComponente);
+            int fkMaquina = Integer.parseInt(idMaquina);
+            conexaoLocal.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", fkComponente, fkMaquina);
 
             
             compo = con.query(
@@ -61,7 +64,10 @@ public class InsertComponenteMaquina {
         
         if(compo.isEmpty()){
             con.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
-            conexaoLocal.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
+            
+            int fkComponente = Integer.parseInt(idComponente);
+            int fkMaquina = Integer.parseInt(idMaquina);
+            conexaoLocal.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", fkComponente, fkMaquina);
 
             
             compo = con.query(
