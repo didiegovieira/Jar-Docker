@@ -81,7 +81,7 @@ public class InsertComponente {
         //Inserir componente Ram
         if (maqRede.isEmpty()){
             System.out.println("Registrando Ram");
-            con.update("INSERT INTO Componente (tipo) VALUES ('Ram')");
+            con.update("INSERT INTO Componente (nomeComponente, tipo) VALUES ('Ram, 'Ram')");
 //            conexaoLocal.update("INSERT INTO Componente (tipo) VALUES ('Ram')");
             List<Componente> verify = con.query("select * from Componente where nomeComponente = 'Ram'", new ComponenteRowMapper());
             inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina);
