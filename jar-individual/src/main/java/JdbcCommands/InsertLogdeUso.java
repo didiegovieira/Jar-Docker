@@ -40,7 +40,7 @@ public class InsertLogdeUso {
         } else {
             con.update("insert into LogUso values (?, ?, ?, null, null, null)",
                     listaLogUso.get(0).getFk_maquina(), idEmpresa, idUser);
-            conexaoLocal.update("insert into LogUso values (?, ?, ?, null, null, null)",
+            conexaoLocal.update("insert into LogUso(fk_maquina, fk_empresa, fk_usuario) values (?, ?, ?)",
                     listaLogUso.get(0).getFk_maquina(), idEmpresa, idUser);
             InsertComponente comp = new InsertComponente();
             comp.inserirComponenteMaquina(idEmpresa, listaLogUso.get(0).getFk_maquina());
@@ -48,9 +48,9 @@ public class InsertLogdeUso {
     }
 
     public void insertSql(String idMaquina, String idEmpresa, String idUser) {
-        con.update("insert into LogUso values (?, ?, ?, null, null, null)",
+        con.update("insert into LogUso(fk_maquina, fk_empresa, fk_usuario) values (?, ?, ?, null, null, null)",
                 idMaquina, idEmpresa, idUser);
-        conexaoLocal.update("insert into LogUso values (?, ?, ?, null, null, null)",
+        conexaoLocal.update("insert into LogUso values (?, ?, ?)",
                 idMaquina, idEmpresa, idUser);
         
     }
