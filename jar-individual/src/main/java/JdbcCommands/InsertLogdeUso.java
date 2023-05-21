@@ -41,13 +41,13 @@ public class InsertLogdeUso {
             con.update("insert into LogUso values (?, ?, ?, null, null, null)",
                     listaLogUso.get(0).getFk_maquina(), idEmpresa, idUser);
             
-            int fkMaquina = Integer.parseInt(listaLogUso.get(0).getFk_maquina());
-            int fkEmpresa = Integer.parseInt(idEmpresa);
-            int fkUsuario = Integer.parseInt(idUser);
-            conexaoLocal.query(
-                "insert into LogUso(fk_maquina, fk_empresa, fk_usuario) values (?, ?, ?)",
-                new LogUsoRowMapper(), fkMaquina, fkEmpresa, fkUsuario);
-            InsertComponente comp = new InsertComponente();
+//            int fkMaquina = Integer.parseInt(listaLogUso.get(0).getFk_maquina());
+//            int fkEmpresa = Integer.parseInt(idEmpresa);
+//            int fkUsuario = Integer.parseInt(idUser);
+//            conexaoLocal.query(
+//                "insert into LogUso(fk_maquina, fk_empresa, fk_usuario) values (?, ?, ?)",
+//                new LogUsoRowMapper(), fkMaquina, fkEmpresa, fkUsuario);
+//            InsertComponente comp = new InsertComponente();
             comp.inserirComponenteMaquina(idEmpresa, listaLogUso.get(0).getFk_maquina());
         }
     }
@@ -55,12 +55,12 @@ public class InsertLogdeUso {
     public void insertSql(String idMaquina, String idEmpresa, String idUser) {
         con.update("insert into LogUso(fk_maquina, fk_empresa, fk_usuario) values (?, ?, ?, null, null, null)",
                 idMaquina, idEmpresa, idUser);
-        int fkMaquina = Integer.parseInt(listaLogUso.get(0).getFk_maquina());
-        int fkEmpresa = Integer.parseInt(idEmpresa);
-        int fkUsuario = Integer.parseInt(idUser);
-        conexaoLocal.query(
-            "insert into LogUso(fk_maquina, fk_empresa, fk_usuario) values (?, ?, ?)",
-            new LogUsoRowMapper(), fkMaquina, fkEmpresa, fkUsuario);
+//        int fkMaquina = Integer.parseInt(listaLogUso.get(0).getFk_maquina());
+//        int fkEmpresa = Integer.parseInt(idEmpresa);
+//        int fkUsuario = Integer.parseInt(idUser);
+//        conexaoLocal.query(
+//            "insert into LogUso(fk_maquina, fk_empresa, fk_usuario) values (?, ?, ?)",
+//            new LogUsoRowMapper(), fkMaquina, fkEmpresa, fkUsuario);
         
     }
 }

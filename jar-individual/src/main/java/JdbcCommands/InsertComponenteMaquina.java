@@ -37,7 +37,7 @@ public class InsertComponenteMaquina {
             
             int fkComponente = Integer.parseInt(idComponente);
             int fkMaquina = Integer.parseInt(idMaquina);
-            conexaoLocal.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", fkComponente, fkMaquina);
+//            conexaoLocal.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", fkComponente, fkMaquina);
 
             
             compo = con.query(
@@ -67,7 +67,7 @@ public class InsertComponenteMaquina {
             
             int fkComponente = Integer.parseInt(idComponente);
             int fkMaquina = Integer.parseInt(idMaquina);
-            conexaoLocal.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", fkComponente, fkMaquina);
+//            conexaoLocal.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", fkComponente, fkMaquina);
 
             
             compo = con.query(
