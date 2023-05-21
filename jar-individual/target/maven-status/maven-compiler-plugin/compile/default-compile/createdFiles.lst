@@ -1,9 +1,6 @@
-Jdbc\ComponenteClass.class
 Jdbc\ConexaoBanco.class
 Looca\ShowCPU.class
-Jdbc\MaquinaClass.class
 Jdbc\MaquinaRowMapper.class
-Jdbc\RegistroRowMapper.class
 JdbcCommands\InsertComponente.class
 Individual\JarIndividual.class
 JdbcCommands\InsertMaquina.class
@@ -17,7 +14,6 @@ Jdbc\ComponenteRowMapper.class
 JdbcCommands\InsertLogdeUso.class
 Jdbc\UsuarioRowMapper.class
 JdbcCommands\InsertRegistro.class
-Jdbc\ComponenteMaquinaClass.class
 Looca\ShowMemoria.class
 Jdbc\ComponenteMaquinaRowMapper.class
 Jdbc\Usuario.class

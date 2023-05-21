@@ -9,7 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <exec.mainClass>Individual.JarIndividual</exec.mainClass>
+        <exec.mainClass>Individual.EasyWare</exec.mainClass>
     </properties>
     <build>
         <plugins>
@@ -23,7 +23,7 @@
                                         </descriptorRefs>
                                             <archive>
                                                 <manifest>
-                                                    <mainClass>Individual.JarIndividual</mainClass> 
+                                                    <mainClass>Individual.EasyWare</mainClass> 
                                                 </manifest>
                                                     </archive>
                                                     </configuration>

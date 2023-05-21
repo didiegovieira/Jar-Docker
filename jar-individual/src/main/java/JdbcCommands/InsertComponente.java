@@ -8,6 +8,7 @@ import Jdbc.Componente;
 import Jdbc.ComponenteMaquinaRowMapper;
 import Jdbc.ComponenteRowMapper;
 import Jdbc.ConexaoBanco;
+import Jdbc.ConexaoBancoLocal;
 import Jdbc.Maquina;
 import Jdbc.MaquinaRowMapper;
 import Looca.ShowCPU;
@@ -24,6 +25,9 @@ public class InsertComponente {
     private ConexaoBanco conexao = new ConexaoBanco();
     private JdbcTemplate con = conexao.getConnection();
     
+    private ConexaoBancoLocal conexaoBancoLocal = new ConexaoBancoLocal();
+    private JdbcTemplate conexaoLocal = conexaoBancoLocal.getConnection();
+    
     InsertComponenteMaquina inCompMaq = new InsertComponenteMaquina();
     
     public void inserirComponenteMaquina(String idEmpresa, String idMaquina) {
@@ -37,6 +41,8 @@ public class InsertComponente {
             System.out.println("Registrando CPU");
             con.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, ?, 'CPU', null, null, null)",
                     cpu.nomeCpu(), cpu.fabricanteCpu());
+            conexaoLocal.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, ?, 'CPU', null, null, null)",
+                    cpu.nomeCpu(), cpu.fabricanteCpu());
             List<Componente> verify = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), cpu.nomeCpu());
             inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina);
         } else {
@@ -48,6 +54,8 @@ public class InsertComponente {
         if (maqDisco.isEmpty()){
             System.out.println("Registrando Disco");
             con.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, null, 'Disco', null, null, null)",
+                disco.nomeDisco());
+            conexaoLocal.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, null, 'Disco', null, null, null)",
                 disco.nomeDisco());
             List<Componente> verify = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), disco.nomeDisco());
             inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina);
@@ -61,6 +69,8 @@ public class InsertComponente {
             System.out.println("Registrando Rede");
             con.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, null, 'Rede', ?, null, ?)",
                 rede.nomeRede(), rede.ipRede(), rede.driverRede());
+            conexaoLocal.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, null, 'Rede', ?, null, ?)",
+                rede.nomeRede(), rede.ipRede(), rede.driverRede());
             List<Componente> verify = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), rede.nomeRede());
             inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina);
         }  else {
@@ -72,6 +82,7 @@ public class InsertComponente {
         if (maqRede.isEmpty()){
             System.out.println("Registrando Ram");
             con.update("INSERT INTO Componente (tipo) VALUES ('Ram')");
+            conexaoLocal.update("INSERT INTO Componente (tipo) VALUES ('Ram')");
             List<Componente> verify = con.query("select * from Componente where nomeComponente = 'Ram'", new ComponenteRowMapper());
             inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina);
         }  else {

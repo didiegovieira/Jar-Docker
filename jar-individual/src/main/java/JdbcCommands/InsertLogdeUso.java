@@ -5,10 +5,9 @@
 package JdbcCommands;
 
 import Jdbc.ConexaoBanco;
+import Jdbc.ConexaoBancoLocal;
 import Jdbc.LogUso;
 import Jdbc.LogUsoRowMapper;
-import Jdbc.Usuario;
-import Jdbc.UsuarioRowMapper;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -19,6 +18,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class InsertLogdeUso {
     ConexaoBanco conexao = new ConexaoBanco();
     JdbcTemplate con = conexao.getConnection();
+    
+    ConexaoBancoLocal conexaoBancoLocal = new ConexaoBancoLocal();
+    JdbcTemplate conexaoLocal = conexaoBancoLocal.getConnection();
 
     MaquinaService inMaq = new MaquinaService();
     InsertComponente comp = new InsertComponente();
@@ -38,6 +40,8 @@ public class InsertLogdeUso {
         } else {
             con.update("insert into LogUso values (?, ?, ?, null, null, null)",
                     listaLogUso.get(0).getFk_maquina(), idEmpresa, idUser);
+            conexaoLocal.update("insert into LogUso values (?, ?, ?, null, null, null)",
+                    listaLogUso.get(0).getFk_maquina(), idEmpresa, idUser);
             InsertComponente comp = new InsertComponente();
             comp.inserirComponenteMaquina(idEmpresa, listaLogUso.get(0).getFk_maquina());
         }
@@ -46,7 +50,8 @@ public class InsertLogdeUso {
     public void insertSql(String idMaquina, String idEmpresa, String idUser) {
         con.update("insert into LogUso values (?, ?, ?, null, null, null)",
                 idMaquina, idEmpresa, idUser);
-        
+        conexaoLocal.update("insert into LogUso values (?, ?, ?, null, null, null)",
+                idMaquina, idEmpresa, idUser);
         
     }
 }

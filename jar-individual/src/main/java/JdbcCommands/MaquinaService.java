@@ -5,6 +5,7 @@
 package JdbcCommands;
 
 import Jdbc.ConexaoBanco;
+import Jdbc.ConexaoBancoLocal;
 import Jdbc.Maquina;
 import Jdbc.MaquinaRowMapper;
 import Jdbc.Usuario;
@@ -21,6 +22,9 @@ public class MaquinaService {
     private ConexaoBanco conexao = new ConexaoBanco();
     private JdbcTemplate con = conexao.getConnection();
     
+    private ConexaoBancoLocal conexaoBancoLocal = new ConexaoBancoLocal();
+    private JdbcTemplate conexaoLocal = conexaoBancoLocal.getConnection();
+    
     public void criarMaquinaELog(String idEmpresa, String idUser) {
         ShowSistema sis = new ShowSistema();
         String so = sis.showSistema().getSistemaOperacional();
@@ -34,6 +38,9 @@ public class MaquinaService {
             System.out.println("Registrando Maquina");
 
             con.update("insert into Maquina values (?, ?, ?, ?)", 
+                    so, arquitetura, fabricante, idEmpresa);
+            
+            conexaoLocal.update("insert into Maquina values (?, ?, ?, ?)", 
                     so, arquitetura, fabricante, idEmpresa);
 
             String idMaquina = buscarUltimaMaquinaId();
@@ -56,6 +63,8 @@ public class MaquinaService {
 
     private void inserirLogUso(String idMaquina, String idEmpresa, String idUser) {
         con.update("insert into LogUso values (?, ?, ?, null, null, null)", idMaquina, idEmpresa, idUser);
+        conexaoLocal.update("insert into LogUso values (?, ?, ?, null, null, null)", idMaquina, idEmpresa, idUser);
+
         InsertComponente comp = new InsertComponente();
         comp.inserirComponenteMaquina(idEmpresa, idMaquina);
     }

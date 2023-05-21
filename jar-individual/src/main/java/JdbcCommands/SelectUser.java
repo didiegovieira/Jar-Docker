@@ -16,10 +16,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author diegovieira
  */
 public class SelectUser {
-    ConexaoBancoLocal conexaoBancoLocal = new ConexaoBancoLocal();
     ConexaoBanco conexaoBanco = new ConexaoBanco();
     JdbcTemplate conexao = conexaoBanco.getConnection();
-    JdbcTemplate conexaoLocal = conexaoBancoLocal.getConnection();
     List<Usuario> listaObjetoUsuario;
     
     InsertMaquina inMaquina = new InsertMaquina();

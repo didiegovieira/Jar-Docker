@@ -9,6 +9,7 @@ import Jdbc.ComponenteMaquina;
 import Jdbc.ComponenteMaquinaRowMapper;
 import Jdbc.ComponenteRowMapper;
 import Jdbc.ConexaoBanco;
+import Jdbc.ConexaoBancoLocal;
 import Jdbc.UsuarioRowMapper;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,6 +21,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class InsertComponenteMaquina {
     private ConexaoBanco conexao = new ConexaoBanco();
     private JdbcTemplate con = conexao.getConnection();
+    
+    private ConexaoBancoLocal conexaoBancoLocal = new ConexaoBancoLocal();
+    private JdbcTemplate conexaoLocal = conexaoBancoLocal.getConnection();
+    
     private InsertRegistro inReg = new InsertRegistro();
     
     public void cadastroComponenteExistente(String idComponente, String idMaquina){
@@ -29,6 +34,8 @@ public class InsertComponenteMaquina {
         
         if(compo.isEmpty()){
             con.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
+            conexaoLocal.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
+
             
             compo = con.query(
                 "select * from ComponenteMaquina where fk_componente = ? and fk_maquina = ?", 
@@ -54,7 +61,9 @@ public class InsertComponenteMaquina {
         
         if(compo.isEmpty()){
             con.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
+            conexaoLocal.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
 
+            
             compo = con.query(
                 "select * from ComponenteMaquina where fk_componente = ? and fk_maquina = ?", 
                 new ComponenteMaquinaRowMapper(), idComponente, idMaquina);
