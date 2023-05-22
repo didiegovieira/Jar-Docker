@@ -25,7 +25,8 @@ public class JarIndividual {
         ConexaoBanco conexaoBanco = new ConexaoBanco();
         JdbcTemplate conexao = conexaoBanco.getConnection();
         JdbcTemplate conexaoLocal = conexaoBancoLocal.getConnection();
-        
+       
+               
         SelectUser select = new SelectUser();
         
         Integer escolha;
