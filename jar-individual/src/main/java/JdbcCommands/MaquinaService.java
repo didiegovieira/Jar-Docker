@@ -40,8 +40,8 @@ public class MaquinaService {
             con.update("insert into Maquina values (?, ?, ?, ?)", 
                     so, arquitetura, fabricante, idEmpresa);
             
-            conexaoLocal.update("insert into Maquina values (?, ?, ?, ?)", 
-                    so, arquitetura, fabricante, idEmpresa);
+            //conexaoLocal.update("insert into Maquina values (?, ?, ?, ?)", 
+            //        so, arquitetura, fabricante, idEmpresa);
 
             String idMaquina = buscarUltimaMaquinaId();
             if (idMaquina != null) {
