@@ -63,7 +63,7 @@ public class MaquinaService {
 
     private void inserirLogUso(String idMaquina, String idEmpresa, String idUser) {
         con.update("insert into LogUso values (?, ?, ?, null, null, null)", idMaquina, idEmpresa, idUser);
-        conexaoLocal.update("insert into LogUso values (?, ?, ?, null, null, null)", idMaquina, idEmpresa, idUser);
+        //conexaoLocal.update("insert into LogUso values (?, ?, ?, null, null, null)", idMaquina, idEmpresa, idUser);
 
         InsertComponente comp = new InsertComponente();
         comp.inserirComponenteMaquina(idEmpresa, idMaquina);
