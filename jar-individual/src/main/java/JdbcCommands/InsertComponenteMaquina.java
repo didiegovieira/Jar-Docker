@@ -44,13 +44,13 @@ public class InsertComponenteMaquina {
                 "select * from ComponenteMaquina where fk_componente = ? and fk_maquina = ?", 
                 new ComponenteMaquinaRowMapper(), idComponente, idMaquina);
             
-            inReg.insertSqlCpu(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            //inReg.insertSqlCpu(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
             inReg.insertSqlDisco(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
             inReg.insertSqlRam(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
             inReg.insertSqlRede(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
 
         } else {
-            inReg.insertSqlCpu(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            //inReg.insertSqlCpu(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
             inReg.insertSqlDisco(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
             inReg.insertSqlRam(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
             inReg.insertSqlRede(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
@@ -74,13 +74,13 @@ public class InsertComponenteMaquina {
                 "select * from ComponenteMaquina where fk_componente = ? and fk_maquina = ?", 
                 new ComponenteMaquinaRowMapper(), idComponente, idMaquina);
             
-            inReg.insertSqlCpu(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            //inReg.insertSqlCpu(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
             inReg.insertSqlDisco(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
             inReg.insertSqlRam(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
             inReg.insertSqlRede(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
 
         } else {
-            inReg.insertSqlCpu(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            //inReg.insertSqlCpu(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
             inReg.insertSqlDisco(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
             inReg.insertSqlRam(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
             inReg.insertSqlRede(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
