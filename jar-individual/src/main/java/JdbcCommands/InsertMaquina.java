@@ -29,7 +29,7 @@ public class InsertMaquina {
     
     ShowSistema sis = new ShowSistema();
     
-    public void insertSql(String idEmpresa, String idUser){
+    public void insertSql(Integer idEmpresa, Integer idUser){
         String so = sis.showSistema().getSistemaOperacional();
         Integer arquitetura = sis.showSistema().getArquitetura();
         String fabricante = sis.showSistema().getFabricante();
@@ -47,7 +47,7 @@ public class InsertMaquina {
             List<Maquina> maquina;
             maquina = con.query("select * from Maquina",
                 new MaquinaRowMapper());
-            String idMaquina = "";
+            Integer idMaquina = 0;
             for (int i = maquina.size() - 1; i >= 0; i--){
                 idMaquina = maquina.get(i).getId_maquina();
                 break;

@@ -16,9 +16,9 @@ public class ComponenteMaquinaRowMapper implements RowMapper<ComponenteMaquina>{
     public ComponenteMaquina mapRow(ResultSet rs, int rowNum) throws SQLException {
         ComponenteMaquina objetoComponenteMaquina = new ComponenteMaquina();
         
-        objetoComponenteMaquina.setId_componenteMaquina(rs.getString("id_componenteMaquina"));
-        objetoComponenteMaquina.setFk_componente(rs.getString("fk_componente"));
-        objetoComponenteMaquina.setFk_maquina(rs.getString("fk_maquina"));
+        objetoComponenteMaquina.setId_componenteMaquina(rs.getInt("id_componenteMaquina"));
+        objetoComponenteMaquina.setFk_componente(rs.getInt("fk_componente"));
+        objetoComponenteMaquina.setFk_maquina(rs.getInt("fk_maquina"));
 
         return objetoComponenteMaquina;
     }

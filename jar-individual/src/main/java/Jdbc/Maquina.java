@@ -9,13 +9,13 @@ package Jdbc;
  * @author diego
  */
 public class Maquina {
-    private String id_maquina;
+    private Integer id_maquina;
     private String sistemaOperacional;
     private String arquitetura;
     private String fabricante;
-    private String fk_empresa;
+    private Integer fk_empresa;
 
-    public Maquina(String id_maquina, String sistemaOperacional, String arquitetura, String fabricante, String fk_empresa) {
+    public Maquina(Integer id_maquina, String sistemaOperacional, String arquitetura, String fabricante, Integer fk_empresa) {
         this.id_maquina = id_maquina;
         this.sistemaOperacional = sistemaOperacional;
         this.arquitetura = arquitetura;
@@ -38,11 +38,11 @@ public class Maquina {
                 '}';
     }
 
-    public String getId_maquina() {
+    public Integer getId_maquina() {
         return id_maquina;
     }
 
-    public void setId_maquina(String id_maquina) {
+    public void setId_maquina(Integer id_maquina) {
         this.id_maquina = id_maquina;
     }
 
@@ -70,11 +70,11 @@ public class Maquina {
         this.fabricante = fabricante;
     }
 
-    public String getFk_empresa() {
+    public Integer getFk_empresa() {
         return fk_empresa;
     }
 
-    public void setFk_empresa(String fk_empresa) {
+    public void setFk_empresa(Integer fk_empresa) {
         this.fk_empresa = fk_empresa;
     }
     

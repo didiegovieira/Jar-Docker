@@ -9,11 +9,11 @@ package Jdbc;
  * @author diego
  */
 public class ComponenteMaquina {
-    private String id_componenteMaquina;
-    private String fk_componente;
-    private String fk_maquina;
+    private Integer id_componenteMaquina;
+    private Integer fk_componente;
+    private Integer fk_maquina;
 
-    public ComponenteMaquina(String id_componenteMaquina, String fk_componente, String fk_maquina) {
+    public ComponenteMaquina(Integer id_componenteMaquina, Integer fk_componente, Integer fk_maquina) {
         this.id_componenteMaquina = id_componenteMaquina;
         this.fk_componente = fk_componente;
         this.fk_maquina = fk_maquina;
@@ -32,27 +32,27 @@ public class ComponenteMaquina {
                 '}';
     }
 
-    public String getId_componenteMaquina() {
+    public Integer getId_componenteMaquina() {
         return id_componenteMaquina;
     }
 
-    public void setId_componenteMaquina(String id_componenteMaquina) {
+    public void setId_componenteMaquina(Integer id_componenteMaquina) {
         this.id_componenteMaquina = id_componenteMaquina;
     }
 
-    public String getFk_componente() {
+    public Integer getFk_componente() {
         return fk_componente;
     }
 
-    public void setFk_componente(String fk_componente) {
+    public void setFk_componente(Integer fk_componente) {
         this.fk_componente = fk_componente;
     }
 
-    public String getFk_maquina() {
+    public Integer getFk_maquina() {
         return fk_maquina;
     }
 
-    public void setFk_maquina(String fk_maquina) {
+    public void setFk_maquina(Integer fk_maquina) {
         this.fk_maquina = fk_maquina;
     }
     

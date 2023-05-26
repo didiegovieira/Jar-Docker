@@ -184,17 +184,26 @@ public class EasyWare extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         SelectUser select = new SelectUser();
-
         String email = String.valueOf(input_email.getText());
         String senha = String.valueOf(input_password.getText());
 
         if (email.isEmpty() || senha.isEmpty()) {
-            String resultado = "Usuario ou Senha vazio(a)!";
-            label_mensagem.setText(resultado);
-        
+            System.out.println("Usuário ou Senha vazio(a)!");
         } else {
             select.selectAndInsert(email, senha);
+
+            if (select.isLoginValido()) {
+                System.out.println("Login deu certo!");
+                // Insira aqui o código para prosseguir após o login bem-sucedido
+            } else {
+                System.out.println("Login deu errado");
+                // Insira aqui o código para lidar com o login inválido, se necessário
+                // Por exemplo, solicitar novamente o email e senha
+                // email = String.valueOf(input_email.getText());
+                // senha = String.valueOf(input_password.getText());
+            }
         }
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

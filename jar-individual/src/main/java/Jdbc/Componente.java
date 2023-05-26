@@ -9,7 +9,7 @@ package Jdbc;
  * @author diego
  */
 public class Componente {
-    private String id_componente;
+    private Integer id_componente;
     private String nomeComponente;
     private String fabricante;
     private String tipo;
@@ -17,7 +17,7 @@ public class Componente {
     private String modelo;
     private String driver;
 
-    public Componente(String id_componente, String nomeComponente, String fabricante, String tipo, String ipComponente, String modelo, String driver) {
+    public Componente(Integer id_componente, String nomeComponente, String fabricante, String tipo, String ipComponente, String modelo, String driver) {
         this.id_componente = id_componente;
         this.nomeComponente = nomeComponente;
         this.fabricante = fabricante;
@@ -44,11 +44,11 @@ public class Componente {
                 '}';
     }
 
-    public String getId_componente() {
+    public Integer getId_componente() {
         return id_componente;
     }
 
-    public void setId_componente(String id_componente) {
+    public void setId_componente(Integer id_componente) {
         this.id_componente = id_componente;
     }
 

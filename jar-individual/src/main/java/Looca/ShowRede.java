@@ -3,6 +3,7 @@ package Looca;
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.rede.Rede;
 import com.github.britooo.looca.api.group.rede.RedeInterface;
+import com.github.britooo.looca.api.util.Conversor;
 import java.util.List;
 
 public class ShowRede {
@@ -65,7 +66,8 @@ public class ShowRede {
             download = redeInterface.getBytesRecebidos();
         }
 
-        return download;
+        
+        return  download;
     }
     
     // Upload da rede acumulativo

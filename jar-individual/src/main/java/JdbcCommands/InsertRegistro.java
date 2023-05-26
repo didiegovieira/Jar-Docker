@@ -32,8 +32,8 @@ public class InsertRegistro {
     ShowRede rede = new ShowRede();
     ShowMemoria ram = new ShowMemoria();
     
-    public void insertSqlCpu(String idComponente, String idComponenteMaquina, String idMaquina){
-        con.update("insert into Registro (clockCPU, temperaturaCPU, usoCPU, fk_componente, fk_componenteMaquina, fk_maquina) values (?, ?, ?, ?, ?, ?)", 
+    public void insertSqlCpu(Integer idComponente, Integer idComponenteMaquina, Integer idMaquina){
+        con.update("insert into Registro (clockCPU, temperaturaCPU, usoCPU, fk_componente, fk_componenteMaquina, fk_maquina) values (?, ?, ?, ?, ?, ?, current_timestamp)", 
                 cpu.clockCpu(), temp.showTemp(), cpu.usoCpu(), idComponente, idComponenteMaquina, idMaquina);
         
 //        int fkComponente = Integer.parseInt(idComponente);
@@ -43,7 +43,7 @@ public class InsertRegistro {
 //                cpu.clockCpu(), temp.showTemp(), cpu.usoCpu(), fkComponente, fkComponenteMaquina, fkMaquina);
     }
     
-    public void insertSqlRede(String idComponente, String idComponenteMaquina, String idMaquina){
+    public void insertSqlRede(Integer idComponente, Integer idComponenteMaquina, Integer idMaquina){
         con.update("insert into Registro (downloadRede, uploadRede, fk_componente, fk_componenteMaquina, fk_maquina) values (?, ?, ?, ?, ?)", 
                 rede.showDownload(), rede.showUpload(), idComponente, idComponenteMaquina, idMaquina);
         
@@ -54,7 +54,7 @@ public class InsertRegistro {
 //                rede.showDownload(), rede.showUpload(), fkComponente, fkComponenteMaquina, fkMaquina);
     }
 
-    public void insertSqlRam(String idComponente, String idComponenteMaquina, String idMaquina){
+    public void insertSqlRam(Integer idComponente, Integer idComponenteMaquina, Integer idMaquina){
         con.update("insert into Registro (usoRAM, disponivelRam, totalRam, fk_componente, fk_componenteMaquina, fk_maquina) values (?, ?, ?, ?, ? ,?)", 
                 ram.usoRam(), ram.disponivelRam(), ram.totalRam(), idComponente, idComponenteMaquina, idMaquina);
         
@@ -65,7 +65,7 @@ public class InsertRegistro {
 //                ram.usoRam(), ram.disponivelRam(), ram.totalRam(), fkComponente, fkComponenteMaquina, fkMaquina);
     }
     
-    public void insertSqlDisco(String idComponente, String idComponenteMaquina, String idMaquina){
+    public void insertSqlDisco(Integer idComponente, Integer idComponenteMaquina, Integer idMaquina){
         con.update("insert into Registro (usadoDisco, totalDisco, disponivelDisco, fk_componente, fk_componenteMaquina, fk_maquina) values (?, ?, ?, ?, ?, ?)", 
                 disco.showUsado(), disco.showTotal(), disco.showDisponivel(), idComponente, idComponenteMaquina, idMaquina);
         

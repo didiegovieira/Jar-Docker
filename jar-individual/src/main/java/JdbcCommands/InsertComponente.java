@@ -30,7 +30,7 @@ public class InsertComponente {
     
     InsertComponenteMaquina inCompMaq = new InsertComponenteMaquina();
     
-    public void inserirComponenteMaquina(String idEmpresa, String idMaquina) {
+    public void inserirComponenteMaquina(Integer idEmpresa, Integer idMaquina) {
         ShowCPU cpu = new ShowCPU();
         ShowDisco disco = new ShowDisco();
         ShowRede rede = new ShowRede();
@@ -39,10 +39,10 @@ public class InsertComponente {
         // Inserir componente CPU
         if (maqCpu.isEmpty()){
             System.out.println("Registrando CPU");
-            con.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, ?, 'CPU', null, null, null)",
+            con.update("INSERT INTO Componente (nomeComponente, fabricante, tipo) VALUES (?, ?, 'CPU')",
                     cpu.nomeCpu(), cpu.fabricanteCpu());
-//            conexaoLocal.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, ?, 'CPU', null, null, null)",
-//                    cpu.nomeCpu(), cpu.fabricanteCpu());
+            conexaoLocal.update("INSERT INTO Componente (nomeComponente, fabricante, tipo) VALUES (?, ?, 'CPU')",
+                    cpu.nomeCpu(), cpu.fabricanteCpu());
             List<Componente> verify = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), cpu.nomeCpu());
             inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina);
         } else {
@@ -53,10 +53,10 @@ public class InsertComponente {
         //Inserir componente Disco
         if (maqDisco.isEmpty()){
             System.out.println("Registrando Disco");
-            con.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, null, 'Disco', null, null, null)",
+            con.update("INSERT INTO Componente (nomeComponente, tipo) VALUES (?, 'Disco')",
                 disco.nomeDisco());
-//            conexaoLocal.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, null, 'Disco', null, null, null)",
-//                disco.nomeDisco());
+            conexaoLocal.update("INSERT INTO Componente (nomeComponente, tipo) VALUES (?, 'Disco')",
+                disco.nomeDisco());
             List<Componente> verify = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), disco.nomeDisco());
             inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina);
         }  else {
@@ -67,10 +67,10 @@ public class InsertComponente {
         //Inserir componente Rede
         if (maqRede.isEmpty()){
             System.out.println("Registrando Rede");
-            con.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, null, 'Rede', ?, null, ?)",
+            con.update("INSERT INTO Componente (nomeComponente, tipo, ipComponente, driver) VALUES (?, 'Rede', ?, ?)",
                 rede.nomeRede(), rede.ipRede(), rede.driverRede());
-//            conexaoLocal.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, null, 'Rede', ?, null, ?)",
-//                rede.nomeRede(), rede.ipRede(), rede.driverRede());
+            conexaoLocal.update("INSERT INTO Componente (nomeComponente, fabricante, tipo, ipComponente, modelo, driver) VALUES (?, null, 'Rede', ?, null, ?)",
+                rede.nomeRede(), rede.ipRede(), rede.driverRede());
             List<Componente> verify = con.query("select * from Componente where nomeComponente = ?", new ComponenteRowMapper(), rede.nomeRede());
             inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina);
         }  else {

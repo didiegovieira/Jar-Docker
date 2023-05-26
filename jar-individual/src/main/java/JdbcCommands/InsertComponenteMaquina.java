@@ -27,7 +27,7 @@ public class InsertComponenteMaquina {
     
     private InsertRegistro inReg = new InsertRegistro();
     
-    public void cadastroComponenteExistente(String idComponente, String idMaquina){
+    public void cadastroComponenteExistente(Integer idComponente, Integer idMaquina){
         List<ComponenteMaquina> compo = con.query(
                 "select * from ComponenteMaquina where fk_componente = ? and fk_maquina = ?", 
                 new ComponenteMaquinaRowMapper(), idComponente, idMaquina);
@@ -35,9 +35,8 @@ public class InsertComponenteMaquina {
         if(compo.isEmpty()){
             con.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
             
-            int fkComponente = Integer.parseInt(idComponente);
-            int fkMaquina = Integer.parseInt(idMaquina);
-//            conexaoLocal.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", fkComponente, fkMaquina);
+            
+            conexaoLocal.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
 
             
             compo = con.query(
@@ -57,7 +56,7 @@ public class InsertComponenteMaquina {
         }
     }
     
-    public void cadastroComponenteNovo(String idComponente, String idMaquina){
+    public void cadastroComponenteNovo(Integer idComponente, Integer idMaquina){
         List<ComponenteMaquina> compo = con.query(
                 "select * from ComponenteMaquina where fk_componente = ? and fk_maquina = ?", 
                 new ComponenteMaquinaRowMapper(), idComponente, idMaquina);
@@ -65,8 +64,7 @@ public class InsertComponenteMaquina {
         if(compo.isEmpty()){
             con.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
             
-            int fkComponente = Integer.parseInt(idComponente);
-            int fkMaquina = Integer.parseInt(idMaquina);
+
 //            conexaoLocal.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", fkComponente, fkMaquina);
 
             

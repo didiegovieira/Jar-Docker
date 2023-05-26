@@ -16,11 +16,11 @@ public class MaquinaRowMapper implements RowMapper<Maquina>{
     public Maquina mapRow(ResultSet rs, int rowNum) throws SQLException {
         Maquina objetoMaquina = new Maquina();
         
-        objetoMaquina.setId_maquina(rs.getString("id_maquina"));
+        objetoMaquina.setId_maquina(rs.getInt("id_maquina"));
         objetoMaquina.setSistemaOperacional(rs.getString("sistemaOperacional"));
         objetoMaquina.setArquitetura(rs.getString("arquitetura"));
         objetoMaquina.setFabricante(rs.getString("fabricante"));
-        objetoMaquina.setFk_empresa(rs.getString("fk_empresa"));
+        objetoMaquina.setFk_empresa(rs.getInt("fk_empresa"));
 
         return objetoMaquina;
     }

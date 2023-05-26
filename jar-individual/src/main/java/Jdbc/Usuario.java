@@ -9,12 +9,12 @@ package Jdbc;
  * @author diegovieira
  */
 public class Usuario {
-    private String id_usuario;
+    private Integer id_usuario;
     private String email;
     private String senha;
-    private String fk_empresa;
+    private Integer fk_empresa;
     
-    public Usuario(String email, String senha, String fk_empresa, String id_usuario){
+    public Usuario(String email, String senha, Integer fk_empresa, Integer id_usuario){
         this.id_usuario = id_usuario;
         this.email = email;
         this.senha = senha;
@@ -39,11 +39,11 @@ public class Usuario {
         return email;
     }
 
-    public String getId_usuario() {
+    public Integer getId_usuario() {
         return id_usuario;
     }
 
-    public void setId_usuario(String id_usuario) {
+    public void setId_usuario(Integer id_usuario) {
         this.id_usuario = id_usuario;
     }
 
@@ -51,7 +51,7 @@ public class Usuario {
         return senha;
     }
 
-    public String getFk_empresa() {
+    public Integer getFk_empresa() {
         return fk_empresa;
     }
 
@@ -63,7 +63,7 @@ public class Usuario {
         this.senha = senha;
     }
     
-    public void setFk_empresa(String fk_empresa) {
+    public void setFk_empresa(Integer fk_empresa) {
         this.fk_empresa = fk_empresa;
     }
 }

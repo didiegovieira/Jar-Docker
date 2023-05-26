@@ -16,15 +16,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author diegovieira
  */
 public class SelectUser {
+    private Boolean loginValido = false;
+        
     ConexaoBanco conexaoBanco = new ConexaoBanco();
     JdbcTemplate conexao = conexaoBanco.getConnection();
     List<Usuario> listaObjetoUsuario;
     
-    InsertMaquina inMaquina = new InsertMaquina();
     InsertLogdeUso inLogUso = new InsertLogdeUso();
     
-    String emailSave = "";
-    String senhaSave = "";
     
     public void selectAndInsert(String email, String senha){
         
@@ -39,18 +38,27 @@ public class SelectUser {
                         && usuario.getSenhaUsuario().equals(senha))) {
             System.out.println("Login deu certo!");
             
-            //Insert na tabela de Maquina
-            Usuario id = listaObjetoUsuario.get(0);
-            System.out.println(id);
-            String idUser = id.getId_usuario();
-            String idEmpresa = id.getFk_empresa();
-            inLogUso.validacao(idUser, idEmpresa);
+            loginValido = true;
+
 
         } else {
             //Mensagem se login deu errado
             System.out.println("Login deu errado");
+            
+            loginValido = false;
+
         }
         
     }
     
+    public Boolean isLoginValido() {
+        return loginValido;
+    }
+    
+                //Insert na tabela de Maquina
+//            Usuario id = listaObjetoUsuario.get(0);
+//            System.out.println(id);
+//            Integer idUser = id.getId_usuario();
+//            Integer idEmpresa = id.getFk_empresa();
+//            inLogUso.validacao(idUser, idEmpresa);
 }
