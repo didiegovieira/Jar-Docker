@@ -29,21 +29,19 @@ public class SelectUser {
         
         //Select no Usuario
         listaObjetoUsuario = conexao.query(
-                "select * from Usuario where email = ? and senha = ?", 
+                "select * from usuario where email = ? and senha = ?", 
                 new UsuarioRowMapper(), email, senha);
         
         //Mensagem se login deu certo
         if (listaObjetoUsuario.stream().anyMatch(usuario ->
                 usuario.getEmailUsuario().equalsIgnoreCase(email)
                         && usuario.getSenhaUsuario().equals(senha))) {
-            System.out.println("Login deu certo!");
             
             loginValido = true;
 
 
         } else {
             //Mensagem se login deu errado
-            System.out.println("Login deu errado");
             
             loginValido = false;
 

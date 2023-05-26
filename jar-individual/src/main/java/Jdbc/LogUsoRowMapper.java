@@ -17,10 +17,10 @@ public class LogUsoRowMapper implements RowMapper<LogUso>{
     public LogUso mapRow(ResultSet rs, int rowNum) throws SQLException {
         LogUso objetoLogUso = new LogUso();
         
-        objetoLogUso.setId_LogUso(rs.getInt("id_LogUso"));
-        objetoLogUso.setFk_maquina(rs.getInt("fk_maquina"));
-        objetoLogUso.setFk_empresa(rs.getInt("fk_empresa"));
-        objetoLogUso.setFk_usuario(rs.getInt("fk_usuario"));
+        objetoLogUso.setId_LogUso(rs.getInt("id"));
+        objetoLogUso.setFk_maquina(rs.getInt("id_maquina"));
+        objetoLogUso.setFk_empresa(rs.getInt("id_empresa"));
+        objetoLogUso.setFk_usuario(rs.getInt("id_usuario"));
 
         return objetoLogUso;
     }

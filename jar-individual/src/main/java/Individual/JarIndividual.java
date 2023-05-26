@@ -6,7 +6,6 @@ package Individual;
 
 import Looca.*;
 import Jdbc.*;
-import JdbcCommands.InsertMaquina;
 import JdbcCommands.SelectUser;
 import java.util.List;
 import java.util.Scanner;

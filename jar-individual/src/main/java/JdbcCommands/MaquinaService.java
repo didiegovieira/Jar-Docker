@@ -29,13 +29,13 @@ public class MaquinaService {
         Integer arquitetura = sis.showSistema().getArquitetura();
         String fabricante = sis.showSistema().getFabricante();
 
-        List<Maquina> maquinas = con.query("select * from Maquina where fk_empresa = ?", 
+        List<Maquina> maquinas = con.query("select * from maquina where fk_empresa = ?", 
                 new MaquinaRowMapper(), idEmpresa);
 
         if (maquinas.isEmpty()) {
             System.out.println("Registrando Maquina");
 
-            con.update("insert into Maquina values (?, ?, ?, ?)", 
+            con.update("insert into maquina values (?, ?, ?, ?)", 
                     so, arquitetura, fabricante, idEmpresa);
             
             Integer idMaquina = buscarUltimaMaquinaId();
@@ -49,7 +49,7 @@ public class MaquinaService {
     }
 
     private Integer buscarUltimaMaquinaId() {
-        List<Maquina> maquinas = con.query("select * from Maquina", new MaquinaRowMapper());
+        List<Maquina> maquinas = con.query("select * from maquina", new MaquinaRowMapper());
         if (!maquinas.isEmpty()) {
             return maquinas.get(maquinas.size() - 1).getId_maquina();
         }
@@ -57,10 +57,10 @@ public class MaquinaService {
     }
 
     private void inserirLogUso(Integer idMaquina, Integer idEmpresa, Integer idUser) {
-        con.update("insert into LogUso values (?, ?, ?)", 
+        con.update("insert into log_uso (fk_maquina, fk_empresa, fk_usuario) values (?, ?, ?)", 
                 idMaquina, idEmpresa, idUser);
         
-        conexaoLocal.update("insert into LogUso values (?, ?, ?)",
+        conexaoLocal.update("insert into log_uso (fk_maquina, fk_empresa, fk_usuario) values (?, ?, ?)",
                 idMaquina, idEmpresa, idUser);
 
         InsertComponente comp = new InsertComponente();

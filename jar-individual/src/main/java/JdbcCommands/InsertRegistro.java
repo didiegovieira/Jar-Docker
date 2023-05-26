@@ -4,13 +4,20 @@
  */
 package JdbcCommands;
 
+import Jdbc.ComponenteMaquina;
+import Jdbc.ComponenteMaquinaRowMapper;
 import Jdbc.ConexaoBanco;
 import Jdbc.ConexaoBancoLocal;
+import Jdbc.LogUso;
+import Jdbc.LogUsoRowMapper;
+import Jdbc.Usuario;
+import Jdbc.UsuarioRowMapper;
 import Looca.ShowCPU;
 import Looca.ShowDisco;
 import Looca.ShowMemoria;
 import Looca.ShowRede;
 import Looca.ShowTemp;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -31,6 +38,29 @@ public class InsertRegistro {
     ShowDisco disco = new ShowDisco();
     ShowRede rede = new ShowRede();
     ShowMemoria ram = new ShowMemoria();
+    
+    public void insert(String email, String senha){
+        List<Usuario> listaObjetoUsuario;
+        listaObjetoUsuario = con.query(
+                "select * from usuario where email = ? and senha = ?", 
+                new UsuarioRowMapper(), email, senha);
+        Usuario id = listaObjetoUsuario.get(0);
+
+        List<LogUso> listaLogUso;
+        listaLogUso = con.query(
+                "select * from log_uso where id_usuario = ? and id_empresa = ?",
+                new LogUsoRowMapper(), id.getId_usuario(), id.getFk_empresa());
+        LogUso log = listaLogUso.get(0);
+        
+        List<ComponenteMaquina> listaCompMaq;
+        listaCompMaq = con.query(
+                "select * from componente_maquina where id_maquina = ?",
+                new ComponenteMaquinaRowMapper(), log.getFk_maquina());
+        
+        
+        System.out.println(listaCompMaq);
+        
+    }
     
     public void insertSqlCpu(Integer idComponente, Integer idComponenteMaquina, Integer idMaquina){
         con.update("insert into Registro (clockCPU, temperaturaCPU, usoCPU, fk_componente, fk_componenteMaquina, fk_maquina) values (?, ?, ?, ?, ?, ?, current_timestamp)", 

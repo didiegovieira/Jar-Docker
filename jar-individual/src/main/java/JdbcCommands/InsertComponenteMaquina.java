@@ -23,65 +23,48 @@ public class InsertComponenteMaquina {
     private JdbcTemplate con = conexao.getConnection();
     
     private ConexaoBancoLocal conexaoBancoLocal = new ConexaoBancoLocal();
-    private JdbcTemplate conexaoLocal = conexaoBancoLocal.getConnection();
+    private JdbcTemplate conLocal = conexaoBancoLocal.getConnection();
     
     private InsertRegistro inReg = new InsertRegistro();
     
-    public void cadastroComponenteExistente(Integer idComponente, Integer idMaquina){
+    public void cadastroComponenteExistente(Integer idComponente, Integer idMaquina, Integer idEmpresa){
         List<ComponenteMaquina> compo = con.query(
-                "select * from ComponenteMaquina where fk_componente = ? and fk_maquina = ?", 
+                "select * from componente_maquina where id_componente = ? and id_maquina = ?", 
                 new ComponenteMaquinaRowMapper(), idComponente, idMaquina);
         
         if(compo.isEmpty()){
-            con.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
-            
-            
-            conexaoLocal.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
-
+            con.update(
+                    "insert into componente_maquina (id_componente, id_maquina, id_empresa) VALUES (?, ?, ?);", 
+                    idComponente, idMaquina, idEmpresa);
             
             compo = con.query(
-                "select * from ComponenteMaquina where fk_componente = ? and fk_maquina = ?", 
+                "select * from componente_maquina where id_componente = ? and id_maquina = ?", 
                 new ComponenteMaquinaRowMapper(), idComponente, idMaquina);
             
-            //inReg.insertSqlCpu(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
-            inReg.insertSqlDisco(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
-            inReg.insertSqlRam(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
-            inReg.insertSqlRede(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            
 
         } else {
-            //inReg.insertSqlCpu(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
-            inReg.insertSqlDisco(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
-            inReg.insertSqlRam(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
-            inReg.insertSqlRede(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+            
         }
     }
     
-    public void cadastroComponenteNovo(Integer idComponente, Integer idMaquina){
+    public void cadastroComponenteNovo(Integer idComponente, Integer idMaquina, Integer idEmpresa){
         List<ComponenteMaquina> compo = con.query(
-                "select * from ComponenteMaquina where fk_componente = ? and fk_maquina = ?", 
+                "select * from componente_maquina where id_componente = ? and id_maquina = ?", 
                 new ComponenteMaquinaRowMapper(), idComponente, idMaquina);
         
         if(compo.isEmpty()){
-            con.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", idComponente, idMaquina);
-            
-
-//            conexaoLocal.update("insert into ComponenteMaquina (fk_componente, fk_maquina) VALUES (?, ?);", fkComponente, fkMaquina);
-
+            con.update(
+                "insert into componente_maquina (id_componente, id_maquina, id_empresa) VALUES (?, ?, ?);", 
+                idComponente, idMaquina, idEmpresa);
             
             compo = con.query(
-                "select * from ComponenteMaquina where fk_componente = ? and fk_maquina = ?", 
+                "select * from componente_maquina where fk_componente = ? and fk_maquina = ?", 
                 new ComponenteMaquinaRowMapper(), idComponente, idMaquina);
             
-            //inReg.insertSqlCpu(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
-            inReg.insertSqlDisco(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
-            inReg.insertSqlRam(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
-            inReg.insertSqlRede(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
 
         } else {
-            //inReg.insertSqlCpu(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
-            inReg.insertSqlDisco(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
-            inReg.insertSqlRam(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
-            inReg.insertSqlRede(idComponente, compo.get(0).getId_componenteMaquina(), idMaquina);
+
         }
     }
 }

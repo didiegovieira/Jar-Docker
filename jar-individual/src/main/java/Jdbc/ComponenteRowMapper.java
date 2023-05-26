@@ -16,13 +16,11 @@ public class ComponenteRowMapper implements RowMapper<Componente>{
     public Componente mapRow(ResultSet rs, int rowNum) throws SQLException {
         Componente objetoComponente = new Componente();
         
-        objetoComponente.setId_componente(rs.getInt("id_componente"));
-        objetoComponente.setNomeComponente(rs.getString("nomeComponente"));
+        objetoComponente.setId_componente(rs.getInt("id"));
+        objetoComponente.setNomeComponente(rs.getString("nome"));
         objetoComponente.setFabricante(rs.getString("fabricante"));
         objetoComponente.setTipo(rs.getString("tipo"));
-        objetoComponente.setIpComponente(rs.getString("ipComponente"));
         objetoComponente.setModelo(rs.getString("modelo"));
-        objetoComponente.setDriver(rs.getString("driver"));
 
         return objetoComponente;
     }

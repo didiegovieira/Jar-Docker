@@ -6,8 +6,8 @@ package JdbcCommands;
 
 /**
  *
- * @author diegovieira
+ * @author diego
  */
-public class LoginFrame {
+public class InsertRede {
     
 }

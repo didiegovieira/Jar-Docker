@@ -10,21 +10,17 @@ package Jdbc;
  */
 public class Componente {
     private Integer id_componente;
-    private String nomeComponente;
+    private String nome;
     private String fabricante;
     private String tipo;
-    private String ipComponente;
     private String modelo;
-    private String driver;
 
-    public Componente(Integer id_componente, String nomeComponente, String fabricante, String tipo, String ipComponente, String modelo, String driver) {
+    public Componente(Integer id_componente, String nomeComponente, String fabricante, String tipo, String modelo) {
         this.id_componente = id_componente;
-        this.nomeComponente = nomeComponente;
+        this.nome = nomeComponente;
         this.fabricante = fabricante;
         this.tipo = tipo;
-        this.ipComponente = ipComponente;
         this.modelo = modelo;
-        this.driver = driver;
     }
     
     public Componente(){
@@ -35,12 +31,10 @@ public class Componente {
     public String toString() {
         return "ObjetoLog{" +
                 "id_componente ='" + id_componente + '\'' +
-                "nomeComponente ='" + nomeComponente + '\'' +
+                "nomeComponente ='" + nome + '\'' +
                 "fabricante ='" + fabricante + '\'' +
                 "tipo ='" + tipo + '\'' +
-                "ipComponente ='" + ipComponente + '\'' +
                 "modelo ='" + modelo + '\'' +
-                "driver ='" + driver + '\'' +
                 '}';
     }
 
@@ -53,11 +47,11 @@ public class Componente {
     }
 
     public String getNomeComponente() {
-        return nomeComponente;
+        return nome;
     }
 
     public void setNomeComponente(String nomeComponente) {
-        this.nomeComponente = nomeComponente;
+        this.nome = nomeComponente;
     }
 
     public String getFabricante() {
@@ -76,14 +70,6 @@ public class Componente {
         this.tipo = tipo;
     }
 
-    public String getIpComponente() {
-        return ipComponente;
-    }
-
-    public void setIpComponente(String ipComponente) {
-        this.ipComponente = ipComponente;
-    }
-
     public String getModelo() {
         return modelo;
     }
@@ -92,13 +78,4 @@ public class Componente {
         this.modelo = modelo;
     }
 
-    public String getDriver() {
-        return driver;
-    }
-
-    public void setDriver(String driver) {
-        this.driver = driver;
-    }
-    
-    
 }
