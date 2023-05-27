@@ -20,7 +20,6 @@ public class ComponenteMaquinaRowMapper implements RowMapper<ComponenteMaquina>{
         objetoComponenteMaquina.setFk_componente(rs.getInt("id_componente"));
         objetoComponenteMaquina.setFk_maquina(rs.getInt("id_maquina"));
         objetoComponenteMaquina.setFk_empresa(rs.getInt("id_empresa"));
-        objetoComponenteMaquina.setTotal(rs.getString("total"));
 
         return objetoComponenteMaquina;
     }

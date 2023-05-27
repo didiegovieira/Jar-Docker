@@ -1,37 +1,35 @@
 #!/bin/bash
 
-sudo docker exec -i ContainerBD mysql -uroot -purubu100 << EOF
+docker exec ContainerBD mysql -uroot -purubu100 << EOF
 CREATE DATABASE IF NOT EXISTS banco1;
 USE banco1;
 
-CREATE TABLE LogUso (
-  id_LogUso INT NOT NULL AUTO_INCREMENT,
-  fk_maquina INT NOT NULL,
-  fk_empresa INT NOT NULL,
-  fk_usuario INT NOT NULL,
-  dataLog DATE NULL,
-  horaInicio TIME NULL,
-  horaFinal TIME NULL,
-  PRIMARY KEY (id_LogUso)
+CREATE TABLE log_uso (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_maquina INT NOT NULL,
+    id_empresa INT NOT NULL,
+    id_usuario INT NOT NULL,
+    data_log DATE NULL,
+    hora_inicio TIME NULL,
+    hora_fim TIME NULL
 );
 
-CREATE TABLE Registro (
-  id_registro INT NOT NULL AUTO_INCREMENT,
-  clockCPU BIGINT NULL,
-  temperaturaCPU DECIMAL(5,2) NULL,
-  usoCPU DECIMAL(3,2) NULL,
-  downloadRede BIGINT NULL,
-  uploadRede BIGINT NULL,
-  usoRAM BIGINT NULL,
-  disponivelRam BIGINT NULL,
-  totalRam BIGINT NULL,
-  usadoDisco DECIMAL(3,1) NULL,
-  totalDisco DECIMAL(7,2) NULL,
-  disponivelDisco DECIMAL(7,2) NULL,
-  fk_componente INT NOT NULL,
-  fk_componenteMaquina INT NOT NULL,
-  fk_maquina INT NOT NULL,
-  PRIMARY KEY (id_registro)
+CREATE TABLE registro (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    clock_cpu DOUBLE(5 , 2) NULL,
+    temp_cpu DOUBLE(5 , 2) NULL,
+    uso_cpu DOUBLE(5 , 2) NULL,
+    download_rede DOUBLE(5, 2) NULL,
+    upload_rede DOUBLE(5 , 2) NULL,
+    uso DOUBLE(7 , 2),
+    data_hora DATETIME
+);
+
+CREATE TABLE rede(
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    ip varchar(20),
+    driver varchar(45),
+    nome varchar(45)
 );
 
 EOF

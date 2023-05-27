@@ -21,6 +21,7 @@ public class ComponenteRowMapper implements RowMapper<Componente>{
         objetoComponente.setFabricante(rs.getString("fabricante"));
         objetoComponente.setTipo(rs.getString("tipo"));
         objetoComponente.setModelo(rs.getString("modelo"));
+        objetoComponente.setTotal(rs.getDouble("total"));
 
         return objetoComponente;
     }

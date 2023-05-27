@@ -59,7 +59,7 @@ public class InsertComponenteMaquina {
                 idComponente, idMaquina, idEmpresa);
             
             compo = con.query(
-                "select * from componente_maquina where fk_componente = ? and fk_maquina = ?", 
+                "select * from componente_maquina where id_componente = ? and id_maquina = ?", 
                 new ComponenteMaquinaRowMapper(), idComponente, idMaquina);
             
 

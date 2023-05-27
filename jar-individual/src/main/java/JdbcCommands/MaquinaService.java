@@ -29,7 +29,7 @@ public class MaquinaService {
         Integer arquitetura = sis.showSistema().getArquitetura();
         String fabricante = sis.showSistema().getFabricante();
 
-        List<Maquina> maquinas = con.query("select * from maquina where fk_empresa = ?", 
+        List<Maquina> maquinas = con.query("select * from maquina where id_empresa = ?", 
                 new MaquinaRowMapper(), idEmpresa);
 
         if (maquinas.isEmpty()) {
@@ -57,10 +57,10 @@ public class MaquinaService {
     }
 
     private void inserirLogUso(Integer idMaquina, Integer idEmpresa, Integer idUser) {
-        con.update("insert into log_uso (fk_maquina, fk_empresa, fk_usuario) values (?, ?, ?)", 
+        con.update("insert into log_uso (id_maquina, id_empresa, id_usuario) values (?, ?, ?)", 
                 idMaquina, idEmpresa, idUser);
         
-        conexaoLocal.update("insert into log_uso (fk_maquina, fk_empresa, fk_usuario) values (?, ?, ?)",
+        conexaoLocal.update("insert into log_uso (id_maquina, id_empresa, id_usuario) values (?, ?, ?)",
                 idMaquina, idEmpresa, idUser);
 
         InsertComponente comp = new InsertComponente();

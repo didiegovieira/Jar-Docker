@@ -71,30 +71,35 @@ public class InsertComponente {
             
         }
 
-        List<Rede> maqRede = con.query("select * from rede where ip = ?", new RedeRowMapper(), rede.ipRede());
+        List<Componente> maqRede = con.query("select * from componente where nome = ?", new ComponenteRowMapper(), rede.nomeRede());
         //Inserir componente Rede
         if (maqRede.isEmpty()){
             System.out.println("Registrando Rede");
-            con.update("INSERT INTO rede (ip, driver, nome, id_maquina, id_empresa) VALUES (?, ?, ?, ?, ?)",
-                rede.ipRede(), rede.driverRede(), rede.nomeRede(), idMaquina, idEmpresa);
+//            con.update("INSERT INTO rede (ip, driver, nome, id_maquina, id_empresa) VALUES (?, ?, ?, ?, ?)",
+//                rede.ipRede(), rede.driverRede(), rede.nomeRede(), idMaquina, idEmpresa);
             
-            List<Componente> verify = con.query("select * from rede where ip = ?", new ComponenteRowMapper(), rede.ipRede());
+            con.update("INSERT INTO rede (driver, nome, id_maquina, id_empresa) VALUES (?, ?, ?, ?)",
+                rede.driverRede(), rede.nomeRede(), idMaquina, idEmpresa);
+            con.update("INSERT INTO componente (nome, tipo) VALUES (?, 'Rede')",
+                rede.nomeRede());
+            
+            List<Componente> verify = con.query("select * from componente where nome = ?", new ComponenteRowMapper(), rede.nomeRede());
            
             inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina, idEmpresa);
             
         }  else {
-            inCompMaq.cadastroComponenteExistente(maqRede.get(0).getId_rede(), idMaquina, idEmpresa);
+            inCompMaq.cadastroComponenteExistente(maqRede.get(0).getId_componente(), idMaquina, idEmpresa);
             
         }
         
-        List<Componente> maqRam = con.query("select * from componente where nome = 'Ram'", new ComponenteRowMapper());
+        List<Componente> maqRam = con.query("select * from componente where nome = 'Ram' and total = ?", new ComponenteRowMapper(), ram.totalRam());
         //Inserir componente Ram
-        if (maqRede.isEmpty()){
+        if (maqRam.isEmpty()){
             System.out.println("Registrando Ram");
-            con.update("INSERT INTO componente (nome, tipo, total) VALUES ('Ram, 'Ram', ?)",
-                    ram.totalRam());
+            con.update("INSERT INTO componente (nome, tipo, total) VALUES ('Ram', 'Ram', ?)", ram.totalRam());
+
             
-            List<Componente> verify = con.query("select * from componente where total = ?", new ComponenteRowMapper(), ram.totalRam());
+            List<Componente> verify = con.query("select * from componente where nome = 'Ram' and total = ?", new ComponenteRowMapper(), ram.totalRam());
             
             inCompMaq.cadastroComponenteNovo(verify.get(0).getId_componente(), idMaquina, idEmpresa);
             

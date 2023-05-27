@@ -32,6 +32,14 @@ public class JarIndividual {
         
         ShowCPU cpu = new ShowCPU();
         ShowTemp temp = new ShowTemp();
+        ShowRede rede = new ShowRede();
+        ShowMemoria mem = new ShowMemoria();
+        ShowDisco disco = new ShowDisco();
+        
+        System.out.println(disco.showUsado());
+        System.out.println(disco.showTotal());
+        System.out.println(disco.showDisponivel());
+        
         
         //System.out.println(cpu.clockCpu());
         //System.out.println(temp.showTemp());

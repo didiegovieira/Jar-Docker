@@ -16,7 +16,7 @@ public class RedeRowMapper implements RowMapper<Rede>{
     public Rede mapRow(ResultSet rs, int rowNum) throws SQLException {
         Rede objetoRede = new Rede();
         
-        objetoRede.setId_rede(rs.getInt("id_rede"));
+        objetoRede.setId_rede(rs.getInt("id"));
         objetoRede.setIp(rs.getString("ip"));
         objetoRede.setDriver(rs.getString("driver"));
         objetoRede.setNome(rs.getString("nome"));

@@ -14,15 +14,17 @@ public class Componente {
     private String fabricante;
     private String tipo;
     private String modelo;
+    private Double total;
 
-    public Componente(Integer id_componente, String nomeComponente, String fabricante, String tipo, String modelo) {
+    public Componente(Integer id_componente, String nome, String fabricante, String tipo, String modelo, Double total) {
         this.id_componente = id_componente;
-        this.nome = nomeComponente;
+        this.nome = nome;
         this.fabricante = fabricante;
         this.tipo = tipo;
         this.modelo = modelo;
+        this.total = total;
     }
-    
+
     public Componente(){
         
     }
@@ -35,8 +37,27 @@ public class Componente {
                 "fabricante ='" + fabricante + '\'' +
                 "tipo ='" + tipo + '\'' +
                 "modelo ='" + modelo + '\'' +
+                "total ='" + total + '\'' +
                 '}';
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+    
+    
 
     public Integer getId_componente() {
         return id_componente;

@@ -5,10 +5,19 @@ import com.github.britooo.looca.api.group.rede.Rede;
 import com.github.britooo.looca.api.group.rede.RedeInterface;
 import com.github.britooo.looca.api.util.Conversor;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ShowRede {
     Looca looca = new Looca();
     Rede rede = looca.getRede();
+    
+    private static Double byteConverterGiga(long bytes){
+        return (double) bytes /(1024 * 1024 * 1024);
+    }
+    
+    private static Double byteConverterMega(long bytes){
+        return (double) bytes / (1024 * 1024);
+    }
 
     // Lista de dados da rede
     public List showRede(){
@@ -57,30 +66,32 @@ public class ShowRede {
     }
         
     // Download de rede acumulativo
-    public Long showDownload(){
+    public Double showDownload(){
         List<RedeInterface> lista = rede.getGrupoDeInterfaces().getInterfaces();
         
         Long download = null;
         
         for (RedeInterface redeInterface : lista) {
             download = redeInterface.getBytesRecebidos();
+            long bytesRecebidosA = redeInterface.getBytesRecebidos();
+            download = bytesRecebidosA;
         }
-
         
-        return  download;
+        return byteConverterMega(download);
     }
     
     // Upload da rede acumulativo
-    public Long showUpload(){
+    public Double showUpload() {
         List<RedeInterface> lista = rede.getGrupoDeInterfaces().getInterfaces();
         
         Long upload = null;
         
         for (RedeInterface redeInterface : lista) {
-            upload = redeInterface.getBytesEnviados();
+            long bytesEnviadosA = redeInterface.getBytesEnviados();
+            upload = bytesEnviadosA;
         }
 
-        return upload;
+        return byteConverterMega(upload);
     }
     
     
