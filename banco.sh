@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker exec ContainerBD mysql -uroot -purubu100 << EOF
+docker exec ContainerBD mysql -uroot -purubu100 -S /var/run/mysqld/mysqld.sock << EOF
 CREATE DATABASE IF NOT EXISTS banco1;
 USE banco1;
 
