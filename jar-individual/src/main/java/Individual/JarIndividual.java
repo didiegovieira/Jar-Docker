@@ -7,8 +7,14 @@ package Individual;
 import Looca.*;
 import Jdbc.*;
 import JdbcCommands.SelectUser;
+import Suport.LogGenerator;
+import Suport.SlackApi;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONObject;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -16,7 +22,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author diegovieira
  */
 public class JarIndividual {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner leitor = new Scanner(System.in);
         Scanner leitor2 = new Scanner(System.in);
         
@@ -25,6 +31,7 @@ public class JarIndividual {
         JdbcTemplate conexao = conexaoBanco.getConnection();
         JdbcTemplate conexaoLocal = conexaoBancoLocal.getConnection();
        
+        
                
         SelectUser select = new SelectUser();
         
@@ -35,10 +42,25 @@ public class JarIndividual {
         ShowRede rede = new ShowRede();
         ShowMemoria mem = new ShowMemoria();
         ShowDisco disco = new ShowDisco();
+        ShowSistema sis = new ShowSistema();
         
-        System.out.println(disco.showUsado());
-        System.out.println(disco.showTotal());
-        System.out.println(disco.showDisponivel());
+//        JSONObject json = new JSONObject();
+//        LogGenerator log = new LogGenerator();
+//        json.put("text", "O limite de 80% de uso de disco foi atingido!");
+//        try {
+//            SlackApi.sendMessage(json);
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(JarIndividual.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        log.escreverArquivo(
+//                            String.format(
+//                                "Sistema Operacional: %s\n"
+//                                + "Arquitetura: %s\n"
+//                                + "Fabricante: %s\n\n", 
+//                                sis.showSistema().getSistemaOperacional(),
+//                                sis.showSistema().getArquitetura(),
+//                                sis.showSistema().getFabricante()));
+
         
         
         //System.out.println(cpu.clockCpu());

@@ -20,10 +20,17 @@ import Looca.ShowCPU;
 import Looca.ShowDisco;
 import Looca.ShowMemoria;
 import Looca.ShowRede;
+import Looca.ShowSistema;
 import Looca.ShowTemp;
+import Suport.LogGenerator;
+import Suport.SlackApi;
+import java.io.IOException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONObject;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -42,6 +49,7 @@ public class InsertRegistro {
     ShowDisco disco = new ShowDisco();
     ShowRede rede = new ShowRede();
     ShowMemoria ram = new ShowMemoria();
+    ShowSistema sis = new ShowSistema();
     
     public void insert(String email, String senha){
         List<Usuario> listaObjetoUsuario;
@@ -67,10 +75,14 @@ public class InsertRegistro {
                 "select * from rede where id_maquina = ?",
                 new RedeRowMapper(), log.getFk_maquina());
         Rede red = listaRede.get(0);
+        
 
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
+                JSONObject json = new JSONObject();
+                LogGenerator log = new LogGenerator();
+                
                 //CPU
                 List<Componente> listaComp;
                 listaComp = con.query("select * from componente where nome = ?",
@@ -87,6 +99,16 @@ public class InsertRegistro {
 
                 conLocal.update("insert into registro (clock_cpu, temp_cpu, uso_cpu, data_hora) values (?, ?, ?, current_timestamp)", 
                 cpu.clockCpu(), temp.showTemp(), cpu.usoCpu());
+                
+                if (temp.showTemp() > 80.0){
+                    json.put("text", "A temperatura da máquina está acima de 80.0º");
+                }
+                
+                //Double porcentagem = (cpu.usoCpu() / cpu.clockCpu()) * 100.0;
+                
+                if (cpu.usoCpu() > 80.0){
+                    json.put("text", "O limite de 80% de uso da cpu foi atingido!");
+                }
 
                 //REDE
                 listaComp = con.query("select * from componente where nome = ?", 
@@ -102,10 +124,10 @@ public class InsertRegistro {
 
                 conLocal.update("insert into registro (download_rede, upload_rede, data_hora) values (?, ?, current_timestamp)", 
                 rede.showDownload(), rede.showUpload());
-
+                
                 //RAM
-                listaComp = con.query("select * from componente where nome = 'Ram'", 
-                        new ComponenteRowMapper());
+                listaComp = con.query("select * from componente where nome = 'Ram' and total = ?", 
+                        new ComponenteRowMapper(), ram.totalRam());
                 lisComp = listaComp.get(0);
 
                 listaCompMaq = con.query("select * from componente_maquina where id_componente = ?",
@@ -117,10 +139,16 @@ public class InsertRegistro {
 
                 conLocal.update("insert into registro (uso, data_hora) values (?, current_timestamp)", 
                 ram.usoRam());
+                
+                Double porcentagem = (ram.usoRam() / ram.totalRam()) * 100.0;
+
+                if(porcentagem > 80.0){
+                    json.put("text", "O limite de 80% de uso da Ram foi atingido!");
+                }
 
                 //DISCO
-                listaComp = con.query("select * from componente where nome = ?", 
-                        new ComponenteRowMapper(), disco.nomeDisco());
+                listaComp = con.query("select * from componente where nome = ? and total = ?", 
+                        new ComponenteRowMapper(), disco.nomeDisco(), disco.showTotal());
                 lisComp = listaComp.get(0);
 
                 listaCompMaq = con.query("select * from componente_maquina where id_componente = ?",
@@ -132,6 +160,38 @@ public class InsertRegistro {
 
                 conLocal.update("insert into registro (uso, data_hora) values (?, current_timestamp)", 
                 disco.showUsado());
+                
+                porcentagem = (disco.showUsado() / disco.showTotal()) * 100.0;
+
+                if(porcentagem > 80.0){
+                    json.put("text", "O limite de 80% de uso de disco foi atingido!");
+                }
+
+                try {
+                    SlackApi.sendMessage(json);
+                } catch (IOException ex) {
+                    log.escreverArquivo(
+                            String.format(
+                                "\nSistema Operacional: %s\n"
+                                + "Arquitetura: %s\n"
+                                + "Fabricante: %s\n\n", 
+                                sis.showSistema().getSistemaOperacional(),
+                                sis.showSistema().getArquitetura(),
+                                sis.showSistema().getFabricante()));
+                    log.escreverArquivo(InsertRegistro.class.getName());
+                    Logger.getLogger(InsertRegistro.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException ex) {
+                    log.escreverArquivo(
+                            String.format(
+                                "Sistema Operacional: %s\n"
+                                + "Arquitetura: %s\n"
+                                + "Fabricante: %s\n\n", 
+                                sis.showSistema().getSistemaOperacional(),
+                                sis.showSistema().getArquitetura(),
+                                sis.showSistema().getFabricante()));
+                    log.escreverArquivo(InsertRegistro.class.getName());
+                    Logger.getLogger(InsertRegistro.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             }
         };

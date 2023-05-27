@@ -55,7 +55,7 @@ public class InsertComponente {
             
         }
         
-        List<Componente> maqDisco = con.query("select * from componente where nome = ?", new ComponenteRowMapper(), disco.nomeDisco());
+        List<Componente> maqDisco = con.query("select * from componente where nome = ? and total = ?", new ComponenteRowMapper(), disco.nomeDisco(), disco.showTotal());
         //Inserir componente Disco
         if (maqDisco.isEmpty()){
             System.out.println("Registrando Disco");
@@ -75,11 +75,12 @@ public class InsertComponente {
         //Inserir componente Rede
         if (maqRede.isEmpty()){
             System.out.println("Registrando Rede");
-//            con.update("INSERT INTO rede (ip, driver, nome, id_maquina, id_empresa) VALUES (?, ?, ?, ?, ?)",
-//                rede.ipRede(), rede.driverRede(), rede.nomeRede(), idMaquina, idEmpresa);
+            con.update("INSERT INTO rede (ip, driver, nome, id_maquina, id_empresa) VALUES (?, ?, ?, ?, ?)",
+                rede.ipRede(), rede.driverRede(), rede.nomeRede(), idMaquina, idEmpresa);
             
-            con.update("INSERT INTO rede (driver, nome, id_maquina, id_empresa) VALUES (?, ?, ?, ?)",
-                rede.driverRede(), rede.nomeRede(), idMaquina, idEmpresa);
+//            con.update("INSERT INTO rede (driver, nome, id_maquina, id_empresa) VALUES (?, ?, ?, ?)",
+//                rede.driverRede(), rede.nomeRede(), idMaquina, idEmpresa);
+            
             con.update("INSERT INTO componente (nome, tipo) VALUES (?, 'Rede')",
                 rede.nomeRede());
             
