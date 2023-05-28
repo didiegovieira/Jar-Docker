@@ -70,11 +70,7 @@ public class InsertRegistro {
                 new ComponenteMaquinaRowMapper(), log.getFk_maquina());
         ComponenteMaquina compmaq = listaCompMaq.get(0);
         
-        List<Rede> listaRede;
-        listaRede = con.query(
-                "select * from rede where id_maquina = ?",
-                new RedeRowMapper(), log.getFk_maquina());
-        Rede red = listaRede.get(0);
+        final int logFkMaquina = log.getFk_maquina();
         
 
         TimerTask timerTask = new TimerTask() {
@@ -82,7 +78,7 @@ public class InsertRegistro {
             public void run() {
                 JSONObject json = new JSONObject();
                 LogGenerator log = new LogGenerator();
-                
+                System.out.println(compmaq);
                 //CPU
                 List<Componente> listaComp;
                 listaComp = con.query("select * from componente where nome = ?",
@@ -90,12 +86,15 @@ public class InsertRegistro {
                 Componente lisComp = listaComp.get(0);
 
                 List<ComponenteMaquina> listaCompMaq;
-                listaCompMaq = con.query("select * from componente_maquina where id_componente = ?",
-                        new ComponenteMaquinaRowMapper(), lisComp.getId_componente());
+                listaCompMaq = con.query("select * from componente_maquina where id_componente = ? and id_maquina = ?",
+                        new ComponenteMaquinaRowMapper(), lisComp.getId_componente(), logFkMaquina);
                 ComponenteMaquina lis2 = listaCompMaq.get(0);
+                
+                System.out.println(lisComp);
+                System.out.println(lis2);
 
                 con.update("insert into registro (clock_cpu, temp_cpu, uso_cpu, data_hora, id_componente_maquina, id_componente, id_maquina, id_empresa) values (?, ?, ?, current_timestamp, ?, ?, ?, ?)", 
-                cpu.clockCpu(), temp.showTemp(), cpu.usoCpu(), lis2.getId_componenteMaquina(), lis2.getFk_componente(), compmaq.getFk_maquina(), compmaq.getFk_empresa());
+                cpu.clockCpu(), temp.showTemp(), cpu.usoCpu(), lis2.getId_componenteMaquina(), lis2.getFk_componente(), lis2.getFk_maquina(), lis2.getFk_empresa());
 
                 conLocal.update("insert into registro (clock_cpu, temp_cpu, uso_cpu, data_hora) values (?, ?, ?, current_timestamp)", 
                 cpu.clockCpu(), temp.showTemp(), cpu.usoCpu());
@@ -115,12 +114,12 @@ public class InsertRegistro {
                         new ComponenteRowMapper(),rede.nomeRede());
                 lisComp = listaComp.get(0);
 
-                listaCompMaq = con.query("select * from componente_maquina where id_componente = ?",
-                        new ComponenteMaquinaRowMapper(), lisComp.getId_componente());
+                listaCompMaq = con.query("select * from componente_maquina where id_componente = ? and id_maquina = ?",
+                        new ComponenteMaquinaRowMapper(), lisComp.getId_componente(), logFkMaquina);
                 lis2 = listaCompMaq.get(0);
 
                 con.update("insert into registro (download_rede, upload_rede, data_hora, id_componente_maquina, id_componente, id_maquina, id_empresa) values (?, ?, current_timestamp, ?, ?, ?, ?)", 
-                rede.showDownload(), rede.showUpload(), lis2.getId_componenteMaquina(), lis2.getFk_componente(), compmaq.getFk_maquina(), compmaq.getFk_empresa());
+                rede.showDownload(), rede.showUpload(), lis2.getId_componenteMaquina(), lis2.getFk_componente(), lis2.getFk_maquina(), lis2.getFk_empresa());
 
                 conLocal.update("insert into registro (download_rede, upload_rede, data_hora) values (?, ?, current_timestamp)", 
                 rede.showDownload(), rede.showUpload());
@@ -130,12 +129,12 @@ public class InsertRegistro {
                         new ComponenteRowMapper(), ram.totalRam());
                 lisComp = listaComp.get(0);
 
-                listaCompMaq = con.query("select * from componente_maquina where id_componente = ?",
-                        new ComponenteMaquinaRowMapper(), lisComp.getId_componente());
+                listaCompMaq = con.query("select * from componente_maquina where id_componente = ? and id_maquina = ?",
+                        new ComponenteMaquinaRowMapper(), lisComp.getId_componente(), logFkMaquina);
                 lis2 = listaCompMaq.get(0);
 
                 con.update("insert into registro (uso, data_hora, id_componente_maquina, id_componente, id_maquina, id_empresa) values (?, current_timestamp, ?, ?, ?, ?)", 
-                ram.usoRam(), lis2.getId_componenteMaquina(), lis2.getFk_componente(), compmaq.getFk_maquina(), compmaq.getFk_empresa());
+                ram.usoRam(), lis2.getId_componenteMaquina(), lis2.getFk_componente(), lis2.getFk_maquina(), lis2.getFk_empresa());
 
                 conLocal.update("insert into registro (uso, data_hora) values (?, current_timestamp)", 
                 ram.usoRam());
@@ -151,8 +150,8 @@ public class InsertRegistro {
                         new ComponenteRowMapper(), disco.nomeDisco(), disco.showTotal());
                 lisComp = listaComp.get(0);
 
-                listaCompMaq = con.query("select * from componente_maquina where id_componente = ?",
-                        new ComponenteMaquinaRowMapper(), lisComp.getId_componente());
+                listaCompMaq = con.query("select * from componente_maquina where id_componente = ? and id_maquina = ?",
+                        new ComponenteMaquinaRowMapper(), lisComp.getId_componente(), logFkMaquina);
                 lis2 = listaCompMaq.get(0);
 
                 con.update("insert into registro (uso, data_hora, id_componente_maquina, id_componente, id_maquina, id_empresa) values (?, current_timestamp, ?, ?, ?, ?)", 
@@ -166,6 +165,8 @@ public class InsertRegistro {
                 if(porcentagem > 80.0){
                     json.put("text", "O limite de 80% de uso de disco foi atingido!");
                 }
+                
+                System.out.println("Finalizado os registro, voltando...");
 
                 try {
                     SlackApi.sendMessage(json);

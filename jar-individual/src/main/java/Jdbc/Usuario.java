@@ -10,12 +10,14 @@ package Jdbc;
  */
 public class Usuario {
     private Integer id_usuario;
+    private String nome;
     private String email;
     private String senha;
     private Integer fk_empresa;
     
-    public Usuario(String email, String senha, Integer fk_empresa, Integer id_usuario){
+    public Usuario(String email, String nome, String senha, Integer fk_empresa, Integer id_usuario){
         this.id_usuario = id_usuario;
+        this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.fk_empresa = fk_empresa;
@@ -29,12 +31,21 @@ public class Usuario {
     public String toString() {
         return "ObjetoUsuario{" +
                 "id_usuario ='" + id_usuario + '\'' +
+                "nome ='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
                 ", fk_empresa ='" + fk_empresa + '\'' +
                 '}';
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
     public String getEmailUsuario() {
         return email;
     }

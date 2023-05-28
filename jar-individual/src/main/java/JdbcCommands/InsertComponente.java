@@ -75,11 +75,11 @@ public class InsertComponente {
         //Inserir componente Rede
         if (maqRede.isEmpty()){
             System.out.println("Registrando Rede");
-            con.update("INSERT INTO rede (ip, driver, nome, id_maquina, id_empresa) VALUES (?, ?, ?, ?, ?)",
-                rede.ipRede(), rede.driverRede(), rede.nomeRede(), idMaquina, idEmpresa);
+//            con.update("INSERT INTO rede (ip, driver, nome, id_maquina, id_empresa) VALUES (?, ?, ?, ?, ?)",
+//                rede.ipRede(), rede.driverRede(), rede.nomeRede(), idMaquina, idEmpresa);
             
-//            con.update("INSERT INTO rede (driver, nome, id_maquina, id_empresa) VALUES (?, ?, ?, ?)",
-//                rede.driverRede(), rede.nomeRede(), idMaquina, idEmpresa);
+            con.update("INSERT INTO rede (driver, nome, id_maquina, id_empresa) VALUES (?, ?, ?, ?)",
+                rede.driverRede(), rede.nomeRede(), idMaquina, idEmpresa);
             
             con.update("INSERT INTO componente (nome, tipo) VALUES (?, 'Rede')",
                 rede.nomeRede());
