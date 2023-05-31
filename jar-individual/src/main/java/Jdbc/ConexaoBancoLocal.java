@@ -19,7 +19,7 @@ public class ConexaoBancoLocal {
 
        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
        dataSource.setUrl("jdbc:mysql://172.20.0.2:3306/banco1?useSSL=false");
-       dataSource.setUsername("diego");
+       dataSource.setUsername("urubu100");
        dataSource.setPassword("urubu100");
 
        this.connection = new JdbcTemplate(dataSource);
