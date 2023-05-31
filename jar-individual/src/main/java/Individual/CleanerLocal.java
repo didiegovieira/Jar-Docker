@@ -33,7 +33,7 @@ public class CleanerLocal {
         }
     }
 
-    private static boolean isInativo(Path path) {
+    public static boolean isInativo(Path path) {
         try {
             BasicFileAttributes attributes = Files.readAttributes(path, BasicFileAttributes.class);
             Instant lastModifiedTime = attributes.lastModifiedTime().toInstant();
@@ -47,7 +47,7 @@ public class CleanerLocal {
         }
     }
 
-    private static boolean fazerBackup(File arquivo) {
+    public static boolean fazerBackup(File arquivo) {
         String diretorioBackup = System.getProperty("user.home") + "/Desktop/Backup"; // Pasta de backup no desktop
 
         File pastaBackup = new File(diretorioBackup);

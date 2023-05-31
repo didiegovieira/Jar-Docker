@@ -78,7 +78,6 @@ public class InsertRegistro {
             public void run() {
                 JSONObject json = new JSONObject();
                 LogGenerator log = new LogGenerator();
-                System.out.println(compmaq);
                 //CPU
                 List<Componente> listaComp;
                 listaComp = con.query("select * from componente where nome = ?",
@@ -90,8 +89,6 @@ public class InsertRegistro {
                         new ComponenteMaquinaRowMapper(), lisComp.getId_componente(), logFkMaquina);
                 ComponenteMaquina lis2 = listaCompMaq.get(0);
                 
-                System.out.println(lisComp);
-                System.out.println(lis2);
 
                 con.update("insert into registro (clock_cpu, temp_cpu, uso_cpu, data_hora, id_componente_maquina, id_componente, id_maquina, id_empresa) values (?, ?, ?, current_timestamp, ?, ?, ?, ?)", 
                 cpu.clockCpu(), temp.showTemp(), cpu.usoCpu(), lis2.getId_componenteMaquina(), lis2.getFk_componente(), lis2.getFk_maquina(), lis2.getFk_empresa());

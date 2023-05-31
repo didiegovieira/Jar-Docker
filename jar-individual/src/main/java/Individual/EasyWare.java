@@ -12,6 +12,7 @@ import JdbcCommands.InsertLogdeUso;
 import JdbcCommands.InsertRegistro;
 import JdbcCommands.SelectUser;
 import Looca.ShowSistema;
+import java.io.File;
 import java.util.List;
 import java.util.Scanner;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -53,6 +54,8 @@ public class EasyWare extends javax.swing.JFrame {
         label_logo2 = new javax.swing.JLabel();
         label_email3 = new javax.swing.JLabel();
         label_email4 = new javax.swing.JLabel();
+        btnInnovation = new javax.swing.JButton();
+        label_email5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -132,7 +135,7 @@ public class EasyWare extends javax.swing.JFrame {
                             .addComponent(jSeparator2)
                             .addComponent(label_mensagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(input_password, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,33 +173,55 @@ public class EasyWare extends javax.swing.JFrame {
 
         label_email3.setFont(new java.awt.Font("FreeSans", 2, 14)); // NOI18N
         label_email3.setForeground(new java.awt.Color(255, 255, 255));
-        label_email3.setText("minimize a tela e tenha um bom serviço!");
+        label_email3.setText("caso o computador esteja lento, aperte o botao");
 
         label_email4.setFont(new java.awt.Font("FreeSans", 2, 14)); // NOI18N
         label_email4.setForeground(new java.awt.Color(255, 255, 255));
         label_email4.setText("seus dados estão sendo registrados,");
 
+        btnInnovation.setBackground(new java.awt.Color(255, 255, 255));
+        btnInnovation.setFont(new java.awt.Font("FreeSans", 1, 15)); // NOI18N
+        btnInnovation.setForeground(new java.awt.Color(0, 0, 0));
+        btnInnovation.setText("Limpar Máquina");
+        btnInnovation.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnInnovation.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnInnovation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInnovationActionPerformed(evt);
+            }
+        });
+
+        label_email5.setFont(new java.awt.Font("FreeSans", 2, 14)); // NOI18N
+        label_email5.setForeground(new java.awt.Color(255, 255, 255));
+        label_email5.setText("minimize a tela e tenha um bom serviço!");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(label_email2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(label_logo2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 79, Short.MAX_VALUE)
+                .addGap(0, 40, Short.MAX_VALUE)
+                .addComponent(label_email3, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_email3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(label_email4)
-                        .addGap(18, 18, 18)))
-                .addGap(61, 61, 61))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(label_email2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addGap(96, 96, 96)
+                            .addComponent(label_logo2)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(btnInnovation, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(label_email5, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(label_email4)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,19 +233,23 @@ public class EasyWare extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addComponent(label_email4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label_email5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(label_email3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnInnovation, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -285,6 +314,32 @@ public class EasyWare extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    private void btnInnovationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInnovationActionPerformed
+        // TODO add your handling code here:
+        
+        String diretorio = "/home/root/Downloads/Teste_arquivos"; // Substitua pelo diretório desejado
+        CleanerLocal cleaner = new CleanerLocal();
+        
+        File[] arquivos = new File(diretorio).listFiles();
+        if (arquivos != null) {
+            for (File arquivo : arquivos) {
+                if (cleaner.isInativo(arquivo.toPath())) {
+                    if (cleaner.fazerBackup(arquivo)) {
+                        if (arquivo.delete()) {
+                            System.out.println("Arquivo " + arquivo.getName() + " excluído.");
+                        } else {
+                            System.out.println("Erro ao excluir arquivo " + arquivo.getName());
+                        }
+                    } else {
+                        System.out.println("Erro ao fazer backup do arquivo " + arquivo.getName());
+                    }
+                } else {
+                    System.out.println(arquivo.getName() + " é recente.");
+                }
+            }
+        }
+    }//GEN-LAST:event_btnInnovationActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -321,30 +376,22 @@ public class EasyWare extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnInnovation;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnLogin1;
     private javax.swing.JTextField input_email;
-    private javax.swing.JTextField input_email1;
     private javax.swing.JTextField input_password;
-    private javax.swing.JTextField input_password1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JLabel label_email;
-    private javax.swing.JLabel label_email1;
     private javax.swing.JLabel label_email2;
     private javax.swing.JLabel label_email3;
     private javax.swing.JLabel label_email4;
+    private javax.swing.JLabel label_email5;
     private javax.swing.JLabel label_logo;
-    private javax.swing.JLabel label_logo1;
     private javax.swing.JLabel label_logo2;
     private javax.swing.JLabel label_mensagem;
-    private javax.swing.JLabel label_mensagem1;
     private javax.swing.JLabel label_senha;
-    private javax.swing.JLabel label_senha1;
     // End of variables declaration//GEN-END:variables
 }
